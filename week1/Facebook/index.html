@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Facebook</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <body>
+        <header>
+            <div class='title'>
+                <p>facebook</p>
+            </div>
+
+            <div class='login'>
+                <form id='login' action='/login.php'>
+                    <div class='email input'>
+                        <label for='email-or-phone'>Электронный адрес или номер телефона</label><br>
+                        <input id='email-or-phone' type='text' name='email-or-phone' required>
+                    </div>
+
+                    <div class='password input'>
+                        <label for='password'>Пароль</label><br>
+                        <input id='pword' type='text' name='password' required>
+                        <p><a id='remember' href='#'>Забыли пароль?</a></p>
+                    </div>
+
+                    <div class='submit'>
+                        <input id='enter' type="button" value='Вход'>
+                    </div>
+                </form>
+            </div>
+
+        </header>
+
+        <div class='content'>
+            <div id='left'>
+                <div>  
+                    <p>Facebook помогает вам всегда оставаться 
+                        на связи и обащаться со своими знакомыми</p>
+                     <br><br>
+                    <img src='https://static.xx.fbcdn.net/rsrc.php/v3/yc/r/GwFs3_KxNjS.png' alt='connection'>
+                </div>
+            </div>
+
+            <div id='right'>
+                <div class='heading'>
+                    <h1>Регистрация</h1>
+                    <p>Это бесплатно и всегда будет бесплатно</p>
+                </div>
+                
+                <div class='sign-up'>
+                    <form  id='sign-up' action='/sign-up.php'></form>
+                        <input id='name' type='text' name='name' placeholder='Имя' required>
+                        <input id ='surname' type='text' name='surname' placeholder='Фамилия' required>
+                        <br>
+                        <input id='email' type='text' name='email' 
+                        placeholder='Номер мобильного телефона или эл. адрес' required>
+                        <br>
+                        <input id='password' type='text' name='password' placeholder='Новый пароль' required>
+                        <br>
+                        <p>Дата рождения</p>
+                            
+                        <input id='day' type='number' name='day' 
+                        min='1' max='31' value='29' required>
+                        <input id='month' type='number' name='month' 
+                        min='1' max='12' value='1' required>
+                        <input id='year' type='number' name='year' 
+                        min='1969' max='2019' value='1994' required>
+
+                        <a href='#'>Зачем указывать дату рождения?</a>
+                        <br>
+                        <input id='female' type='radio' name='gender' value='female'>
+                        <label for='female'>Женщина</label>
+
+                        <input id='male' type='radio' name='gender' value='male'>
+                        <label for='male'>Мужчина</label>
+
+                        <p>Нажимая кнопку Регистрация, вы принмаете <a href='#'>Условия</a>,
+                            <a href='#'>Политику использования данных</a> и 
+                            <a href='#'>Политику в отношении файлов cookie</a>. Вы можете
+                            получать от нас SMS-уведомления, отказаться от которых можно
+                            в любой момент.
+                        </p>
+
+                        <input id='register' type='button' value='Регистрация'>
+                    </form>
+                </div>
+
+                <div class='create-group'>
+                    <p><a href='#'>Создать Страницу</a> знаменитости, музыкальной группы
+                    или компании.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class='footer'>
+                <div class='lang'>
+                        <ol>
+                            <li><a href='#'>Русский</a></li>
+                            <li><a href='#'>Русский</a></li>
+                            <li><a href='#'>Русский</a></li>
+                            <li><a href='#'>Русский</a></li>
+                            <li><a href='#'>Русский</a></li>
+                            <li><a href='#'>Русский</a></li>
+                            <li><a href='#'>Русский</a></li>
+                            <li><a href='#'>Русский</a></li>
+                            <li><a href='#'>Русский</a></li>
+                            <li><a href='#'>Русский</a></li>
+                            <li><a href='#'>Русский</a></li>
+                        </ol>
+        
+                        <input type='button' value='+'>
+                    </div>
+                    
+                    <hr>
+        
+                    <div class='options'>
+                        <ol>
+                            <li><a href='#'>Русский</a></li>
+                            <li><a href='#'>Русский</a></li>
+                            <li><a href='#'>Русский</a></li>
+                            <li><a href='#'>Русский</a></li>
+                            <li><a href='#'>Русский</a></li>
+                            <li><a href='#'>Русский</a></li>
+                            <li><a href='#'>Русский</a></li>
+                            <li><a href='#'>Русский</a></li>
+                            <li><a href='#'>Русский</a></li>
+                            <li><a href='#'>Русский</a></li>
+                        </ol>
+                    </div>
+        
+                    <div class='facebook'>
+                        <p>Facebook (c) 2019</p>
+                    </div>
+            </div>
+            
+        </footer>
+    </body>
+</html>

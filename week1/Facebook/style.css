@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 630px;
+    width: 100%;
+}
+
+header {
+    height: 70px;
+    width: 100%;
+    background-color: #3b5998;
+}
+
+.title {
+    width: 45%;
+    height: 100%;
+    float: left;
+}
+
+.title p {
+    margin-left: 240px;
+    margin-top: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    font-size: 35px;
+}
+
+#enter {
+    background-color: #3b59C2;
+    border: 1px black solid;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    padding: 3px
+}
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+.input label {
+    color: white;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 15px;
+}
+
+#remember {
+    color: grey;
+    font-size: 13px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.login {
+    width: 55%;
+    height: 100%;
+    float: left;
+}
+
+.email {
+    width: 40%;
+    height: 100%;
+    margin-top: 10px;
+    float: left;
+}
+
+.password {
+    width: 25%;
+    height: 100%;
+    margin-top: 10px;
+    float: left;
+}
+
+.submit {
+    width: 10%;
+    height: 100%;
+    float: left;
+    margin-top: 25px;
+}
+
+.email input, .password input {
+    width: 150px;
+}
+
+#left {
+    float: left;
+    width: 50%;
+}
+
+#left div {
+    width: 500px;
+    float: right;
+    margin-top: 30px;
+}
+
+#right div {
+    width: 400px;
+}
+
+#right {
+    float: left;
+    width: 50%;
+}
+
+.content {
+    background-color: beige;
+}
+
+#register {
+    width: 140px;
+    height: 30px;
+    background-color: forestgreen;
+    color: white;
+    border: 1px black solid;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#right div.heading {
+    margin-top: 20px;
+}
+
+#sign-up div {
+    width: 500px;
+}
+
+#name, #surname {
+    width: 170px;
+    height: 25px;
+}
+
+#email, #password {
+    width: 100%;
+    height: 25px;
+}
+
+#surname {
+    float: right;
+}
+
+.name, .surname {
+    width: 50%;
+    float: left;
+    margin-bottom: 4px;
+}
+
+footer {
+    width: 100%;
+    height: 100px;
+    clear: both;
+    background-color: white;
+}
+
+img {
+    width: 500px;
+    height: 200px;
+}
+
+.footer {
+    margin-left: 240px;
+}
+
+hr {
+    width: 60%;
+    align-items: center;
+}
+
+li {
+    display: inline;
+    margin-right: 4px;
+}
+
+#left, #right {
+    min-height: 400px;
+}
