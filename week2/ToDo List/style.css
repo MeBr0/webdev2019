@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    height: 50px;
+    width: 100%;
+    background-color: #050942;
+}
+
+.header_text {
+    position: relative;
+    left: 60px;
+    top: 10px;
+    color: rgb(245, 245, 191);
+    font-size: 22px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.content {
+    width: 100%;
+    background-color: rgb(241, 241, 202);
+}
+
+.main {
+    /* border: 1px black solid; */
+    width: 50%;
+    min-height: 600px;
+    margin: 0 auto;
+}
+
+.heading {
+    /* border: 1px yellow solid; */
+    position: relative;
+    padding-top: 50px;
+}
+
+.heading h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 10px;
+    color: #110011;
+}
+
+.input {
+    /* border: 1px green solid; */
+    position: relative;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 70%;
+    height: 30px;
+}
+
+#new_task {
+    width: 80%;
+    margin-right: 20px;
+
+}
+
+#submit {
+    position: relative;
+    background-color: rgb(9, 27, 129);
+    color: rgb(201, 184, 184);
+    font-size: 12px;
+    width: 35px;
+    height: 25px;
+    border-radius: 6px;
+}
+
+#submit:hover {
+    background-color: rgb(199, 21, 21);
+}
+
+#tasks {
+    /* border: 2px red solid; */
+    position: relative;
+    min-height: 400px;
+    margin-top: 20px;
+}
+
+.task {
+    /* border: 2px blue solid; */
+    position: relative;
+    height: 30px;
+}
+
+.checks {
+    float: left;
+    width: 5%;
+    height: 100%;
+}
+
+.checks input {
+    position: relative;
+    margin-top: 6px;
+    margin-left: 5px;
+}
+
+.texts {
+    /* border: 2px blue solid; */
+    width: 86%;
+    height: 80%;
+    float: left;
+}
+
+.texts p {
+    height: 100%;
+    width: 100%;
+    padding-top: 2px;
+    padding-left: 4px;
+    color: #052d9b;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.undone {
+    text-decoration: none;
+}
+
+.done {
+    text-decoration: line-through;
+}
+
+.deletes {
+    width: 5%;
+    height: 100%;
+    float: left;
+}
+
+.bins {
+    height: 19px;
+    width: 19px;
+}
+
+.deletes button {
+    height: 30px;
+    border: 0;
+    background-color: rgb(241, 241, 202);
+}
