@@ -1,7 +1,5 @@
 console.log("Success!");
 
-var cnt = 1;
-
 function createTask() {
     // save text of task
     const input = document.getElementById('new_task');
@@ -17,18 +15,17 @@ function createTask() {
     }
 
     // create outer div
-    var task = document.createElement("div");
+    const task = document.createElement("div");
     task.className = 'task';
-    task.id = cnt;
 
     // create div for checkbox
-    var check = document.createElement("div");
+    const check = document.createElement("div");
     check.className = 'checks';
 
-    var checkBox = document.createElement("input");
+    const checkBox = document.createElement("input");
     checkBox.type = 'checkbox';
     checkBox.onclick = function toggle() {
-        var par = this.parentElement.parentElement.getElementsByClassName('texts')[0].firstChild;
+        const par = this.parentElement.parentElement.getElementsByClassName('texts')[0].firstChild;
         
         // console.log(this);
 
@@ -48,10 +45,10 @@ function createTask() {
     task.appendChild(check);
 
     // create div for text
-    var text = document.createElement("div");
+    const text = document.createElement("div");
     text.className = 'texts';
 
-    var innerText = document.createElement("p");
+    const innerText = document.createElement("p");
     innerText.innerHTML = input.value;
     innerText.className = 'undone';
 
@@ -59,16 +56,15 @@ function createTask() {
     task.appendChild(text);
 
     // create div for delete btn
-    var del = document.createElement("div");
+    const del = document.createElement("div");
     del.className = 'deletes';
 
-    var btn = document.createElement('button');
+    const btn = document.createElement('button');
     btn.onclick = function() {
         this.parentElement.parentElement.style.display = "none";
     }
-    btn.className = cnt++;
-    
-    var btn_image = document.createElement('img');
+
+    const btn_image = document.createElement('img');
     btn_image.src = './bin.png';
     btn_image.className = 'bins';
 
@@ -76,7 +72,7 @@ function createTask() {
     del.appendChild(btn);
     task.appendChild(del);
 
-    var tasks = document.getElementById('tasks');
+    const tasks = document.getElementById('tasks');
 
     tasks.appendChild(task);    
 
