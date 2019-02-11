@@ -4,11 +4,15 @@ var cnt = 1;
 
 function createTask() {
     // save text of task
-    var task_text = document.getElementById('new_task').value;
+    const input = document.getElementById('new_task');
 
     // console.log(task_text);
 
-    if (task_text == '') {
+    if (input.value.replace( /\s/g, '') == '') {
+        alert("Cannot create empty task!");
+        
+        input.value = "";
+
         return;
     }
 
@@ -48,7 +52,7 @@ function createTask() {
     text.className = 'texts';
 
     var innerText = document.createElement("p");
-    innerText.innerHTML = task_text;
+    innerText.innerHTML = input.value;
     innerText.className = 'undone';
 
     text.appendChild(innerText);
@@ -77,5 +81,7 @@ function createTask() {
     tasks.appendChild(task);    
 
     // console.log(task.outerHTML);
+
+    input.value = "";
 }
 
