@@ -15,13 +15,12 @@ body {
     font-family: 'ZCOOL QingKe HuangYou', cursive;
 }
 
-.center {
+.greet {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    display: none;
 }
 
 .date_block {
@@ -52,7 +51,37 @@ body {
     align-items: center;
     /* border: 2px solid rgb(18, 240, 30); */
     font-size: 30px;
+}
 
+#btn {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border-radius: 50%;
+    /* background-color: rgba(218, 7, 7, 0.836); */
+    background: rgb(18, 240, 30);
+}
+
+#new_task {
+    width: 250px;
+    height: 20px;
+    background-color: black;
+    border-style: none none solid none;
+    border-bottom: 2px dotted rgb(18, 240, 30);
+    padding-bottom: 5px;
+    font-size: 20px;
+    color: rgb(18, 240, 30);
+}
+
+#submit {
+    width: 50px;
+    height: 20px;
+    background-color: black;
+    color: rgb(18, 240, 30);
+    border: none;
 }
 
 h1 {
@@ -69,7 +98,7 @@ h1 {
     font-size: 18px;
 }
 
-#q {
+.q {
     width: 250px;
     height: 20px;
     background-color: black;
@@ -81,6 +110,14 @@ h1 {
 }
 
 #q_label {
-    margin-right: 20px;
+    margin-right: 10px;
     font-size: 30px;
+}
+
+.main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
