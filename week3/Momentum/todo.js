@@ -2,6 +2,15 @@ console.log("Success!");
 
 var input = document.getElementById('new_task');        // input object
 
+document.getElementById('submit_task').onclick = createTask;
+
+$('#new_task').keypress(function(e) {
+
+    if(e.which == 13) {
+        createTask();
+    }
+});
+
 function createTask() {
     
     if (input.value.replace( /\s/g, '') == '') {

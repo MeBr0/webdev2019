@@ -1,17 +1,19 @@
-@import url('https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou');
-
 html, body {
     height: 100%;
 }
 
 body {
-    background-color: black;
     height: 100%;
+
+    background-color: black;
+    color: rgb(6, 175, 14);
+
     background-position: 50% 50%;
-    margin: 0;
     background-repeat: no-repeat;
     background-size: cover;
-    color: rgb(6, 175, 14);
+
+    margin: 0;
+
     font-family: 'ZCOOL QingKe HuangYou', cursive;
 }
 
@@ -19,50 +21,54 @@ body {
     width: 100%;
     height: 100%;
     display: flex;
+
     justify-content: center;
     align-items: center;
 }
 
 .date_block {
+    /* border: 2px solid rgb(18, 240, 30); */
     width: 100px;
     height: 30px;
-    /* border: 2px solid rgb(18, 240, 30); */
     display: flex;
     position: absolute;
+
     bottom: 5px;
     right: 5px;
 }
 
 .time_block {
-    width: 50px;
-    height: 20px;
     /* border: 2px solid rgb(18, 240, 30); */
+    width: 80px;
+    height: 20px;
     display: flex;
     position: absolute;
+
     bottom: 5px;
     left: 5px;
 }
 
 .ask {
+    /* border: 2px solid rgb(18, 240, 30); */
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: 2px solid rgb(18, 240, 30); */
+
     font-size: 30px;
 }
 
 #btn {
+    background-color: rgb(18, 240, 30);
     width: 25px;
     height: 25px;
     display: flex;
     position: absolute;
+
     right: 10px;
     top: 10px;
     border-radius: 50%;
-    /* background-color: rgba(218, 7, 7, 0.836); */
-    background: rgb(18, 240, 30);
 }
 
 h1 {
@@ -71,28 +77,35 @@ h1 {
 
 #date {
     margin: auto;
+
     font-size: 18px;
 }
 
 #time {
     margin: auto;
+    
     font-size: 18px;
 }
 
 .question {
     width: 250px;
     height: 20px;
+
     background-color: black;
+    color: rgb(18, 240, 30);
+
+    text-align: center;
+
     border-style: none none solid none;
     border-bottom: 2px dotted rgb(18, 240, 30);
     padding-bottom: 5px;
+
     font-size: 20px;
-    color: rgb(18, 240, 30);
-    text-align: center;
 }
 
 #label {
     margin-right: 10px;
+
     font-size: 30px;
 }
 

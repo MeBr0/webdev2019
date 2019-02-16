@@ -6,6 +6,11 @@
     "chrome_url_overrides" : {
         "newtab": "index.html"
     },
+    "permissions": [
+        "*://developer.mozilla.org/*",
+        "webRequest",
+        "cookies"
+    ],
     "content_security_policy": "script-src 'self' https://code.jquery.com; object-src 'self'"
   }
 

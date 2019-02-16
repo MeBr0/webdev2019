@@ -1,13 +1,49 @@
 var mode = true;
 
+// document.cookie = null;
+
+var token = setInterval(showTime, 1000);
+
 start();
+
+$('.question').keypress(function(e) {
+    
+    if(e.which == 13) {
+        var username = e.target.value;
+        
+        if(!username) return;
+        
+        $('.ask').fadeOut( 
+            function(){
+                $('.greeting').html(`<h1>Hello, ${username}</h1>`);
+                $('.greeting').fadeIn(
+                    function(){
+                        setCookie('username', username, 365);
+                    });
+            });
+    }
+});
+
+
+$("#btn").click(function(e) {
+    if (mode) {
+        e.target.style.background = "rgba(218, 7, 7, 0.836)";
+        
+        mode = false;
+    }
+    else {
+        e.target.style.background = 'rgb(18, 240, 30)';
+
+        mode = true;
+    }
+
+    start();
+});
 
 function start() {
     showDate();
     showTimeFirst();
     
-    var token = setInterval(showTime, 1000);
-
     if (mode) {
         const username = getCookie('username');
         console.log(username);
@@ -23,24 +59,6 @@ function start() {
             $('.greeting').css('display', 'none');
             $('.ask').css('display', 'flex');
         }
-    
-        $('.question').keypress(function(e) {
-            console.log("qwe");
-            if(e.which == 13) {
-                var username = e.target.value;
-                
-                if(!username) return;
-                
-                $('.ask').fadeOut( 
-                    function(){
-                        $('.greeting').html(`<h1>Hello, ${username}</h1>`);
-                        $('.greeting').fadeIn(
-                            function(){
-                                setCookie('username', username,365);
-                            });
-                    });
-            }
-        });
     }
     else {
         $('.greeting').css('display', 'none');
@@ -50,46 +68,41 @@ function start() {
     
 }
 
-// $("#btn").click(switchMode());
-
-function switchMode() {
-    if (mode) {
-        btn.style.background = "rgba(218, 7, 7, 0.836)";
-        
-        mode = false;
-    }
-    else {
-        btn.style.background = 'rgb(18, 240, 30)';
-
-        mode = true;
-    }
-
-    start();
-}
-
 function showTimeFirst() {
-    const splittedDate = new Date().toString().split(" ");
+    const currentDate = new Date();
+
+    const splittedDate = currentDate.toString().split(" ");
 
     const hms = splittedDate[4].split(":");     // hours minutes seconds
 
     const time = document.getElementById("time");
 
-    time.innerHTML = hms[0] + " : " + hms[1];
+    let postfix = currentDate.getHours() > 12 ? 'AM' : 'PM';
 
-    console.log(hms[0] + ":" + hms[1]);
+    time.innerHTML = hms[0] + " : " + hms[1] + "   " + postfix;
+
+    // console.log(hms[0] + " : " + hms[1] + "   " + postfix);
 }
 
 function showTime() {
-    const splittedDate = new Date().toString().split(" ");
+    const currentDate = new Date();
+
+    const splittedDate = currentDate.toString().split(" ");
 
     const hms = splittedDate[4].split(":");     // hours minutes seconds
     
     if (hms[2] == '00') {
         const time = document.getElementById("time");
 
-        time.innerHTML = hms[0] + " : " + hms[1];
+        let postfix = currentDate.getHours() > 12 ? 'AM' : 'PM';
 
-        console.log(hms[0] + ":" + hms[1]);
+        time.innerHTML = hms[0] + " : " + hms[1] + "   " + postfix;
+    
+        // console.log(hms[0] + " : " + hms[1] + "   " + postfix);
+
+        if (hms[0] == "00" && hms[1] == "00") {
+            showDate();
+        }
     }
 }
 
@@ -106,16 +119,22 @@ function setCookie(name, value, duration) {
 
     date.setTime(date.getTime() + duration * 24 * 60 * 60 * 1000);      // in milliseconds
 
-    const key = name + '=' + value + ';';
+    const key = encodeURIComponent(name) + '=' + encodeURIComponent(value) + ';';
     const expires = 'expires=' + date.toGMTString() + ';';
     
     document.cookie = key + expires + 'path=/';
+
+    console.log(key + expires + 'path=/');
+    console.log(document.cookie);
 }
 
 function getCookie(name) {
     name += "=";
 
+    console.log(decodeURIComponent(document.cookie));
+
     const decodedCookie = decodeURIComponent(document.cookie);
+
     const splittedCookie = decodedCookie.split(';');
     
     for(let i = 0; i < splittedCookie.length; i++) {
