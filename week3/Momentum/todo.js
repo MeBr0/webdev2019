@@ -5,7 +5,7 @@ var input = document.getElementById('new_task');        // input object
 function createTask() {
     
     if (input.value.replace( /\s/g, '') == '') {
-        alert("Cannot create empty task!");
+        alert("cannot create empty task!");
     }
     else {
         const task = document.createElement("div");         // set outer div

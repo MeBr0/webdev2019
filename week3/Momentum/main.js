@@ -1,6 +1,6 @@
-start();
-
 var mode = true;
+
+start();
 
 function start() {
     showDate();
@@ -12,41 +12,45 @@ function start() {
         const username = getCookie('username');
         console.log(username);
         
-        $('.main').css('display', 'none');
+        $('.todo').css('display', 'none');
     
         if (username) {
-            $('.greet').css('display', 'flex');
-            $('.question').css('display', 'none');
-            $('.greet').html(`<h1>Hello, ${username}</h1>`);
+            $('.greeting').css('display', 'flex');
+            $('.ask').css('display', 'none');
+            $('.greeting').html(`<h1>hello, ${username}</h1>`);
         }
         else {
-            $('.greet').css('display', 'none');
-            $('.question').css('display', 'flex');
+            $('.greeting').css('display', 'none');
+            $('.ask').css('display', 'flex');
         }
     
-        $('.q').keypress(function(e) {
+        $('.question').keypress(function(e) {
             console.log("qwe");
             if(e.which == 13) {
-              var username = e.target.value;
-              if(!username) return;
-              $('.question').fadeOut(function(){
-                $('.greet').html(`<h1>Hello, ${username}</h1>`);
-                $('.greet').fadeIn(function(){
-                  setCookie('username', username,365);
-                });
-              });
+                var username = e.target.value;
+                
+                if(!username) return;
+                
+                $('.ask').fadeOut( 
+                    function(){
+                        $('.greeting').html(`<h1>Hello, ${username}</h1>`);
+                        $('.greeting').fadeIn(
+                            function(){
+                                setCookie('username', username,365);
+                            });
+                    });
             }
         });
     }
     else {
-        $('.greet').css('display', 'none');
-        $('.question').css('display', 'none');
-        $('.main').css('display', 'flex');
+        $('.greeting').css('display', 'none');
+        $('.ask').css('display', 'none');
+        $('.todo').css('display', 'flex');
     }
     
 }
 
-$("#btn").click(switchMode());
+// $("#btn").click(switchMode());
 
 function switchMode() {
     if (mode) {

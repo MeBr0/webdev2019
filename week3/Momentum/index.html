@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Innertia</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
     <link rel="stylesheet" type="text/css" href="todo.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"
     integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -18,20 +18,20 @@
         <p id='time'></p>
     </div>
 
-    <div class="greet">
+    <div class="greeting">
         
     </div>
 
-    <div class="question">
-        <label id='q_label' for='q'>Who are you?</label><br>
-        <input class='q' type='text'>
+    <div class="ask">
+        <label id='label' for='q'>who are you?</label><br>
+        <input class='question' type='text'>
     </div>
 
-    <div class='main'>
+    <div class='todo'>
         <div class='input'>
-            <input id='new_task' type='text' placeholder='What`s new?'>
+            <input id='new_task' type='text' placeholder='what`s new?'>
 
-            <button id='submit' onclick='createTask();'>Add</button>
+            <button id='submit_task' onclick='createTask();'>add</button>
         </div>
         <br>
         <div id='tasks'>
