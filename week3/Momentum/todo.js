@@ -11,38 +11,22 @@ function createTask() {
         const task = document.createElement("div");         // set outer div
         task.className = 'task';
 
-        const check = document.createElement("div");        // set div for checkbox
-        check.className = 'checks';
-
-        const checkBox = document.createElement("input");
-        checkBox.type = 'checkbox';
-        checkBox.onclick = toggle;
-
-        check.appendChild(checkBox);
-        task.appendChild(check);
-
         const text = document.createElement("div");         // set div for text
         text.className = 'texts';
 
         const innerText = document.createElement("p");
         innerText.innerHTML = input.value;
         innerText.className = 'undone';
+        innerText.onclick = toggle;
 
         text.appendChild(innerText);
         task.appendChild(text);
 
         const del = document.createElement("div");          // set div for delete btn
         del.className = 'deletes';
+        del.innerHTML = 'del';
+        del.onclick = remove;
 
-        const btn = document.createElement('button');
-        btn.onclick = remove;
-
-        const btn_image = document.createElement('img');
-        btn_image.src = './bin.png';
-        btn_image.className = 'bins';
-
-        btn.appendChild(btn_image);
-        del.appendChild(btn);
         task.appendChild(del);
 
         const tasks = document.getElementById('tasks');     // get tasks div
@@ -54,26 +38,23 @@ function createTask() {
 }
 
 function toggle(e) {
-    const par = e.target.parentElement.parentElement.getElementsByClassName('texts')[0].firstChild;
     
     // console.log(this);
 
     // console.log(this.checked);
 
-    if (this.checked) {
-        par.className = "done";
+    if (e.target.className == 'undone') {
+        e.target.className = "done";
     }
     else {
-        par.className = "undone";
+        e.target.className = "undone";
     }
 }
 
 function remove(e) {
-    const task = e.target.parentElement.parentElement;
+    const tasks = e.target.parentElement.parentElement;
 
-    const tasks = task.parentElement;
-
-    tasks.removeChild(task);
+    tasks.removeChild(e.target.parentElement);
 }
 
 function clear() {
