@@ -6,7 +6,7 @@ class Question(models.Model):
     pub_date = models.DateTimeField('date published')
 
     def __str__(self):
-        return self.question_text
+        return 'Question - id: %d, text: %s, date published: %s' % (self.id, self.question_text, str(self.pub_date))
 
 
 class Choice(models.Model):
