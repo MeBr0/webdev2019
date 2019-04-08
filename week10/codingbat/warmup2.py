@@ -8,7 +8,7 @@ def front_times(str, n):
 	return str[:3] * n
 
 def string_bits(str):
-	return ''.join(str[::2])
+	return str[::2]
 
 def string_splosion(str):
 	return ''.join([str[:i+1] for i in range(len(str))])

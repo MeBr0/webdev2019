@@ -38,7 +38,4 @@ def sum67(nums):
 	return res
 
 def has22(nums):
-	return sum([1 for i in range(len(nums)) if nums[i:i+2] == [2, 2]]) > 0
-
-def xyz_there(str):
-	return sum([1 for i in range(1, len('#' + str)-2) if ('#'+str)[i:i+3] == 'xyz' and ('#'+str)[i-1] != '.']) > 0
+	return sum([1 for i in range(len(nums)) if nums[i:i+2] == [2] * 2]) > 0
