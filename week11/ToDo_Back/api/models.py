@@ -28,7 +28,7 @@ class Task(models.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'created_at': self.created_at,
-            'due_on': self.due_on,
+            'createdAt': self.created_at,
+            'dueOn': self.due_on,
             'status': self.status
         }
