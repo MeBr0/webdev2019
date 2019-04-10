@@ -1,25 +1,59 @@
 import { Injectable } from '@angular/core';
-import { ITaskList } from 'src/app/model/task-list';
-import { ITask } from 'src/app/model/task';
-import { HttpClient } from '@angular/common/http';
-import { TaskListProviderService } from './task-list-provider.service';
+import { HttpClient, HttpParams } from '@angular/common/http';
+
+import * as moments from 'moment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TaskListService extends TaskListProviderService {
+export class TaskListService {
+  
+  constructor(protected http: HttpClient) { 
 
-  constructor(http: HttpClient) { 
-    super(http);
   }
 
-  getTaskLists(): Promise<ITaskList[]> {
-    return this.get('http://127.0.0.1:8000/api/task_lists/', {});
-  } 
+  get(url: string, body: any): Promise<any> {
+  	body = this.normalBody(body);
+  	const pars = this.getUrlParams(body);
 
-  getTasks(id: number): Promise<ITask[]> {
-    // console.log('http://127.0.0.1:8000/api/task_lists/' + id + '/tasks/');
-
-    return this.get('http://127.0.0.1:8000/api/task_lists/' + id + '/tasks/', {})
+    return this.http.get(url).toPromise().then(res => res);
   }
+
+  post(url: string, body: any): Promise<any> {
+  	body = this.normalBody(body);
+
+  	return this.http.post(url, body).toPromise().then(res => res);
+  }
+
+  // TODO: understand this
+  formatDate(date: Date) {
+    return moments(date).format('YYYY-MM-DD');
+	}
+
+  private normalBody(body: any): any {
+    if (!body) {
+      body = {};
+    }
+    for (const key in body) {
+      if (!body.hasOwnProperty(key)) {
+        continue;
+      }
+      if (body[key] instanceof Date) {
+        body[key] = this.formatDate(body[key]);
+      }
+    }
+    return body;
+	}
+
+	private getUrlParams(body: any): HttpParams {
+    let params = new HttpParams();
+    for (const key in body) {
+      if (!body.hasOwnProperty(key)) {
+        continue;
+      }
+      params = params.append(key, body[key]);
+    }
+    return params;
+}
+
 }

@@ -1,17 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { TaskListService } from './task-list.service';
+import { ITaskList } from 'src/app/model/task-list';
+import { ITask } from 'src/app/model/task';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TaskListProviderService {
+export class TaskListProviderService extends TaskListService {
 
-  constructor(protected http: HttpClient) { 
-
+  constructor(http: HttpClient) { 
+    super(http);
   }
 
-  get(url: string, body: any): Promise<any> {
-    return this.http.get(url).toPromise().then(res => res);
+  getTaskLists(): Promise<ITaskList[]> {
+    return this.get('http://127.0.0.1:8000/api/task_lists/', {});
+  } 
+
+  getTasks(id: number): Promise<ITask[]> {
+    // console.log('http://127.0.0.1:8000/api/task_lists/' + id + '/tasks/');
+
+    return this.get('http://127.0.0.1:8000/api/task_lists/' + id + '/tasks/', {});
+  }
+
+  createTaskList(name: any): Promise<ITaskList> {
+    return this.post('http://127.0.0.1:8000/api/task_lists/', { name : name });
   }
 
 

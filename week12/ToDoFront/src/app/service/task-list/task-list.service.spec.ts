@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TaskListService } from './task-list.service';
+import { TaskListProviderService } from './task-list-provider.service';
 
-describe('TaskListService', () => {
+describe('TaskListProviderService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: TaskListService = TestBed.get(TaskListService);
+    const service: TaskListProviderService = TestBed.get(TaskListProviderService);
     expect(service).toBeTruthy();
   });
 });

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ITaskList } from 'src/app/model/task-list';
-import { TaskListService } from 'src/app/service/task-list/task-list.service';
+import { TaskListProviderService } from 'src/app/service/task-list/task-list-provider.service';
 import { Router } from '@angular/router';
 import { ITask } from 'src/app/model/task';
 
@@ -12,7 +12,9 @@ import { ITask } from 'src/app/model/task';
 export class MainPageComponent implements OnInit {
   taskLists: ITaskList[] = [];
 
-  constructor(private taskListService: TaskListService,
+  public name: any = '';
+
+  constructor(private taskListService: TaskListProviderService,
             private router: Router) { }
 
   ngOnInit() {
@@ -27,6 +29,17 @@ export class MainPageComponent implements OnInit {
 
   getTasks(taskList: ITaskList) {
     this.router.navigate(['/list', taskList.id]);
+  }
+
+  createTaskList() {
+    console.log(this.name);
+    
+    if (this.name !== '') {
+      this.taskListService.createTaskList(this.name).then(res => {
+        this.name = '';
+        this.taskLists.push(res);
+      })
+    }
   }
 
 }

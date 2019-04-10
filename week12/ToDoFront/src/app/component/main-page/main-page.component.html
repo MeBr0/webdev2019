@@ -1,8 +1,19 @@
 <main>
   <div class="content">
-    <div class="task_list" *ngFor='let taskList of taskLists' (click)='getTasks(taskList)'>
-      <div class="text">
-        <p>{{taskList.name}}</p>
+	  <div class="new">
+      <div class="new_text">
+        <input [(ngModel)]="name" type="text" placeholder='New task list?'>  			
+      </div>
+  	  <div class="go">
+  		  <button (click)='createTaskList()'>Create</button>		
+  	  </div>
+  	</div>
+
+    <div class="old">
+      <div class="task_list" *ngFor='let taskList of taskLists' (click)='getTasks(taskList)'>
+        <div class="text">
+          <p>{{taskList.name}}</p>
+        </div>
       </div>
     </div>
   </div>

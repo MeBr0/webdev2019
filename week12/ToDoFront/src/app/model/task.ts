@@ -1,7 +1,7 @@
 export interface ITask {
     id: number;
-    createdAt: Date;
-    dueOn: Date;
+    created_at: Date;
+    due_on: Date;
     status: string;
-    taskList: number;
+    task_list: number;
 }
