@@ -1,0 +1,15 @@
+<main *ngIf='tasks'>
+  <div class="content">
+    <div class="back" (click)='goHome()'>
+      &lt;
+    </div>
+    <div class="tasks">
+      <div class="task" *ngFor='let task of tasks' (click)='doNothing()'>
+        <div class="text">
+          <p>{{task.name}} - {{task.dueOn}}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
