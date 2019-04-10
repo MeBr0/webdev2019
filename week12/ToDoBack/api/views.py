@@ -1,8 +1,9 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import TaskList, Task
+from api.models import TaskList, Task
 from api.serializers import TaskListSerializer, TaskSerializer
 
+import json
 
 @csrf_exempt
 def task_lists(request):
@@ -13,8 +14,17 @@ def task_lists(request):
 
         return JsonResponse(serializer.data, safe=False, status=200)
 
-    elif request.method == 'POST':
-        pass
+    elif request.method == 'POST':        
+        data = json.loads(request.body)
+
+        serializer = TaskListSerializer(data=data)
+
+        if serializer.is_valid():
+            serializer.save()
+
+            return JsonResponse(serializer.data, status=201)
+        
+        return JsonResponse(serializer.errors)
 
 
 @csrf_exempt
