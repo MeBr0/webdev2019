@@ -34,7 +34,7 @@ main {
 .new_text {
     /*background-color: #221;*/
 
-    width: 70%;
+    width: 75%;
     height: 100%;
 
     display: flex;
@@ -63,7 +63,7 @@ main {
 }
 
 .go {
-    width: 30%;
+    width: 25%;
     height: 100%;
 
     display: flex;
@@ -75,18 +75,19 @@ main {
     background-color: inherit;
 
     width: 60%;
-    height: 60%;
+    height: 70%;
 
     border: 0;
     border-radius: 6px;
 
-    color: #000;
+    color: #3F3;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
+    font-size: 17px;
 }
 
 .go button:hover {
-    background-color: #BBB;
+    color: #DDD;
+    background-color: #3F3;
 
 }
 
@@ -112,6 +113,8 @@ main {
     cursor: pointer;
 
     background-color: #BBB;
+
+
 }
 
 .task_list:first-child:hover {
@@ -125,7 +128,9 @@ main {
 }
 
 .text {
-    margin-left: 5%;
+    /*background-color: #444;*/
+    width: 90%;
+    height: 100%;
 
     display: flex;
     justify-content: flex-start;
@@ -135,6 +140,47 @@ main {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-a { 
-    color: #111 ;
+.text:hover {
+}
+
+.edit {
+    width: 5%;
+    height: 100%;
+
+    color: #FFD300;
+}
+
+.edit:hover {
+    background-color: #FFD300;
+
+    color: #DDD;
+}
+
+.delete {
+    width: 5%;
+    height: 100%;
+
+    color: #E80000;
+}
+
+.delete:hover {
+    background-color: #E80000;
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
+
+    color: #DDD;
+}
+
+.edit, .delete {
+    font-size: 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text p {
+    color: #111;
+
+    margin-left: 10px;
 }

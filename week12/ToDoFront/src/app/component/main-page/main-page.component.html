@@ -10,9 +10,17 @@
   	</div>
 
     <div class="old">
-      <div class="task_list" *ngFor='let taskList of taskLists' (click)='getTasks(taskList)'>
-        <div class="text">
+      <div class="task_list" *ngFor='let taskList of taskLists'>
+        <div class="text" (click)='getTasks(taskList)'d>
           <p>{{taskList.name}}</p>
+        </div>
+        
+        <div class="edit">  
+          E
+        </div>
+
+        <div class="delete" (click)='deleteTaskList(taskList)'>
+          D
         </div>
       </div>
     </div>

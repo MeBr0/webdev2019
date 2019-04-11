@@ -27,5 +27,9 @@ export class TaskListProviderService extends TaskListService {
     return this.post('http://127.0.0.1:8000/api/task_lists/', { name : name });
   }
 
+  deleteTaskList(id: number): Promise<any> {
+    return this.del('http://127.0.0.1:8000/api/task_lists/' + id + '/', {});
+  }
+
 
 }

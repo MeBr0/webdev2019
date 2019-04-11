@@ -42,4 +42,14 @@ export class MainPageComponent implements OnInit {
     }
   }
 
+  deleteTaskList(taskList: ITaskList) {
+    this.taskListService.deleteTaskList(taskList.id).then(res => {
+      console.log(taskList.id)
+      
+      this.taskListService.getTaskLists().then(taskLists => {
+        this.taskLists = taskLists;
+      });
+    });
+  }
+
 }
