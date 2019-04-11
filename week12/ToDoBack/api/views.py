@@ -44,6 +44,18 @@ def task_list(request, pk):
 
         return JsonResponse(serializer.data, status=200)
 
+    elif request.method == 'PUT':
+        data = json.loads(request.body)
+
+        serializer = TaskListSerializer(instance=t_list, data=data)
+
+        if serializer.is_valid():
+            serializer.save()
+
+            return JsonResponse(serializer.data, status=200)
+
+        return JsonResponse(serializer.errors)
+
     elif request.method == 'DELETE':
         # print('delete')
 
@@ -53,7 +65,7 @@ def task_list(request, pk):
 
 
 @csrf_exempt
-def tasks(request, pk):
+def tasks(request, pk): 
     try:
         t_list = TaskList.objects.get(id=pk)
     except TaskList.DoesNotExist as e:
