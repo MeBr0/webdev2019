@@ -1,20 +1,30 @@
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
+from django.views import View
+
 from api.models import TaskList, Task
 from api.serializers import TaskListSerializer, TaskSerializer
 
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+
 import json
 
-@csrf_exempt
-def task_lists(request):
-    if request.method == 'GET':
+
+class TaskListsView(View):
+
+    @method_decorator(csrf_exempt)  # for 403 not occured
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def get(self, request):
         t_lists = TaskList.objects.all()
 
         serializer = TaskListSerializer(t_lists, many=True)
 
         return JsonResponse(serializer.data, safe=False, status=200)
 
-    elif request.method == 'POST':        
+
+    def post(self, request):
         data = json.loads(request.body)
 
         serializer = TaskListSerializer(data=data)
@@ -27,24 +37,30 @@ def task_lists(request):
         return JsonResponse(serializer.errors)
 
 
-@csrf_exempt
-def task_list(request, pk):
-    try:
-        t_list = TaskList.objects.get(id=pk)
-        print(t_list)
+class TaskListView(View):
 
-    except TaskList.DoesNotExist as e:
-        return JsonResponse({'error': e})
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
-    print(request.method)
+    
+    def get(self, request, pk):
+        try:
+            t_list = TaskList.objects.get(id=pk)
+        except TaskList.DoesNotExist as e:
+            return JsonResponse({'error': e})
 
-    if request.method == 'GET':
-        # print('get')
         serializer = TaskListSerializer(t_list)
 
         return JsonResponse(serializer.data, status=200)
 
-    elif request.method == 'PUT':
+
+    def put(self, request, pk):
+        try:
+            t_list = TaskList.objects.get(id=pk)
+        except TaskList.DoesNotExist as e:
+            return JsonResponse({'error': e})
+
         data = json.loads(request.body)
 
         # print(t_list)
@@ -59,27 +75,33 @@ def task_list(request, pk):
 
         return JsonResponse(serializer.errors)
 
-    elif request.method == 'DELETE':
-        # print('delete')
+
+    def delete(self, request, pk):
+        try:
+            t_list = TaskList.objects.get(id=pk)
+        except TaskList.DoesNotExist as e:
+            return JsonResponse({'error': e})
 
         t_list.delete()
 
         return JsonResponse({}, status=204)
 
 
-@csrf_exempt
-def tasks(request, pk): 
-    try:
-        t_list = TaskList.objects.get(id=pk)
-    except TaskList.DoesNotExist as e:
-        return JsonResponse({'error': e})
+class TasksView(View):
 
-    if request.method == 'GET':
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    
+    def get(self, request, pk):
+        try:
+            t_list = TaskList.objects.get(id=pk)
+        except TaskList.DoesNotExist as e:
+            return JsonResponse({'error': e})
+
         tasks = t_list.task_set.all()
 
         serializer = TaskSerializer(tasks, many=True)
 
         return JsonResponse(serializer.data, safe=False, status=200)
-
-    elif request.method == 'POST':
-        pass
