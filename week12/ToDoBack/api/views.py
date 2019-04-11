@@ -47,6 +47,9 @@ def task_list(request, pk):
     elif request.method == 'PUT':
         data = json.loads(request.body)
 
+        # print(t_list)
+        # print(data)
+
         serializer = TaskListSerializer(instance=t_list, data=data)
 
         if serializer.is_valid():
