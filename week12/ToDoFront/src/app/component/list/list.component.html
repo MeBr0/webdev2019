@@ -1,5 +1,5 @@
-<main *ngIf='tasks'>
-  <div class="back" (click)='goHome()'>
+<main>
+  <div class="back" (click)='saveAndGoHome()'>
     &lt;
   </div>
 
@@ -9,7 +9,7 @@
     </div> -->
     <div class="options">
       <div class="name">
-        <input [(ngModel)]="name" type="text" value="{{taskList.name}}">       
+        <input [(ngModel)]="name" type="text" value="{{taskList.name}}" placeholder="Task list">
       </div>
       <div class="change">
         <button (click)='updateTaskList()'>Change</button>    
@@ -17,9 +17,17 @@
     </div>
     
     <div class="tasks">
-      <div class="task" *ngFor='let task of tasks' (click)='doNothing()'>
-        <div class="text">
+      <div class="task" *ngFor='let task of tasks'>
+        <div class="text" [ngStyle]="{'text-decoration': task.status == 'Done' ? 'line-through' : 'none'}" (click)="switchTask(task)">
           <p>{{task.name}}</p>
+        </div>
+        
+        <div class="edit">
+          E
+        </div>
+
+        <div class="delete">
+          D
         </div>
       </div>
     </div>

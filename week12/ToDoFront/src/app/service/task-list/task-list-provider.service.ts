@@ -37,5 +37,11 @@ export class TaskListProviderService extends TaskListService {
     return this.put('http://127.0.0.1:8000/api/task_lists/' + taskList.id + '/', taskList);
   }
 
+  updateTask(task: ITask): Promise<ITask> {
+    console.log('http://127.0.0.1:8000/api/task_lists/' + task.task_list['id'] + '/tasks/' + task.id);
+
+    return this.put('http://127.0.0.1:8000/api/task_lists/' + task.task_list['id'] + '/tasks/' + task.id + '/', task)
+  }
+
 
 }
