@@ -31,10 +31,25 @@ def task_lists(request):
 def task_list(request, pk):
     try:
         t_list = TaskList.objects.get(id=pk)
+        print(t_list)
+
     except TaskList.DoesNotExist as e:
         return JsonResponse({'error': e})
 
-    return JsonResponse(t_list.to_json())
+    print(request.method)
+
+    if request.method == 'GET':
+        # print('get')
+        serializer = TaskListSerializer(t_list)
+
+        return JsonResponse(serializer.data, status=200)
+
+    elif request.method == 'DELETE':
+        # print('delete')
+
+        t_list.delete()
+
+        return JsonResponse({}, status=204)
 
 
 @csrf_exempt
