@@ -139,4 +139,23 @@ class TaskView(View):
         return JsonResponse({'error': 'task not found in tasklist'})
 
 
+    def delete(self, request, pk, pk2):
+        try:
+            t_list = TaskList.objects.get(id=pk)
+        except TaskList.DoesNotExist as e:
+            return JsonResponse({'error': e})
+
+        try:
+            t = Task.objects.get(id=pk2)
+        except Task.DoesNotExist as e:
+            return JsonResponse({'error': e})
+
+        if t in t_list.task_set.all():
+            t.delete()
+
+            return JsonResponse({}, status=204)
+
+        return JsonResponse({'error': 'task not found in tasklist'})
+
+
 
