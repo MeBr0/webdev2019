@@ -31,6 +31,12 @@ export class TaskListService {
     return this.http.delete(url, body).toPromise().then(res => res);
   }
 
+  put(url: string, body: any): Promise<any> {
+    body = this.normalBody(body);
+
+    return this.http.put(url, body).toPromise().then(res => res);
+  }
+
   // TODO: understand this
   formatDate(date: Date) {
     return moments(date).format('YYYY-MM-DD');

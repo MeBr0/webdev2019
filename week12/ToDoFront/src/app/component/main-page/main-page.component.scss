@@ -1,7 +1,7 @@
 main {
     background-color: #DDD;
     width: 100%;
-    height: 573px;
+    height: 92%;
 
     display: flex;
     justify-content: center;
@@ -113,8 +113,6 @@ main {
     cursor: pointer;
 
     background-color: #BBB;
-
-
 }
 
 .task_list:first-child:hover {
@@ -138,9 +136,6 @@ main {
 
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
-}
-
-.text:hover {
 }
 
 .edit {

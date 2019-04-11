@@ -17,9 +17,11 @@ export class TaskListProviderService extends TaskListService {
     return this.get('http://127.0.0.1:8000/api/task_lists/', {});
   } 
 
-  getTasks(id: number): Promise<ITask[]> {
-    // console.log('http://127.0.0.1:8000/api/task_lists/' + id + '/tasks/');
+  getTaskList(id: number): Promise<ITaskList> {
+    return this.get('http://127.0.0.1:8000/api/task_lists/' + id + '/', {});
+  }
 
+  getTasks(id: number): Promise<ITask[]> {
     return this.get('http://127.0.0.1:8000/api/task_lists/' + id + '/tasks/', {});
   }
 
@@ -29,6 +31,10 @@ export class TaskListProviderService extends TaskListService {
 
   deleteTaskList(id: number): Promise<any> {
     return this.del('http://127.0.0.1:8000/api/task_lists/' + id + '/', {});
+  }
+
+  updateTaskList(taskList: ITaskList): Promise<ITaskList> {
+    return this.put('http://127.0.0.1:8000/api/task_lists/' + taskList.id + '/', taskList);
   }
 
 
