@@ -22,7 +22,7 @@ class TaskSerializer(serializers.ModelSerializer):
 	created_at = serializers.DateTimeField(required=True)
 	due_on = serializers.DateTimeField(required=True)
 	status = serializers.CharField(required=True)
-	task_list = TaskListSerializer(required=True)
+	task_list = TaskListSerializer(read_only=True)
 
 	class Meta:
 		model = Task
