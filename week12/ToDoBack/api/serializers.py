@@ -9,7 +9,7 @@ class TaskListSerializer(serializers.Serializer):
 	def create(self, validated_data):
 		return TaskList.objects.create(**validated_data)
 
-	def update(sefl, instance, validated_data):
+	def update(self, instance, validated_data):
 		instance.name = validated_data.get('name', instance.name)
 		instance.save()
 
@@ -17,13 +17,15 @@ class TaskListSerializer(serializers.Serializer):
 
 
 class TaskSerializer(serializers.ModelSerializer):
-	id = serializers.IntegerField(read_only=True)
-	name = serializers.CharField(required=True)
-	created_at = serializers.DateTimeField(required=True)
-	due_on = serializers.DateTimeField(required=True)
-	status = serializers.CharField(required=True)
-	task_list = TaskListSerializer(read_only=True)
-
 	class Meta:
 		model = Task
 		fields = ('id', 'name', 'created_at', 'due_on', 'status', 'task_list')
+
+
+	def create(self, validated_data):
+		t = validated_data.pop('task_list')
+		# validated_data.pop('id')
+
+		print('task list is ' + str(t))
+
+		return Task.objects.create(task_list=t, **validated_data)

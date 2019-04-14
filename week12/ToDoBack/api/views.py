@@ -106,11 +106,53 @@ class TasksView(View):
 
         return JsonResponse(serializer.data, safe=False, status=200)
 
+    def post(self, request, pk):
+        try:
+            t_list = TaskList.objects.get(id=pk)
+        except TaskList.DoesNotExist as e:
+            return JsonResponse({'error': e})
+
+        data = json.loads(request.body)
+
+        print(data)
+
+        serializer = TaskSerializer(data=data)
+
+        if serializer.is_valid():
+            serializer.save()
+
+            return JsonResponse(serializer.data, status=201)
+        
+        return JsonResponse(serializer.errors)
+
 class TaskView(View):
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
+
+
+    def get(self, request, pk, pk2):
+        try:
+            t_list = TaskList.objects.get(id=pk)
+        except TaskList.DoesNotExist as e:
+            return JsonResponse({'error': e})
+
+        try:
+            t = Task.objects.get(id=pk2)
+        except Task.DoesNotExist as e:
+            return JsonResponse({'error': e})
+
+        print(t)
+
+        if t in t_list.task_set.all():
+            serializer = TaskSerializer(t)
+
+            print(serializer)
+
+            return JsonResponse(serializer.data, status=200)
+
+        return JsonResponse({'error': 'task not found in tasklist'})
 
 
     def put(self, request, pk, pk2):

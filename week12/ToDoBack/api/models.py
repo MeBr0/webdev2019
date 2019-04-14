@@ -31,4 +31,4 @@ class Task(models.Model):
             'createdAt': self.created_at,
             'dueOn': self.due_on,
             'status': self.status
-}
+        }
