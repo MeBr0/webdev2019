@@ -39,11 +39,11 @@ main {
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
 }
 
-.options {
+.options, .add {
     /*background-color: #000;*/
     width: 85%;
     height: 15%;
@@ -54,7 +54,7 @@ main {
     align-items: center;
 }
 
-.name {
+.name, .new_task {
     /*background-color: #111;*/
     width: 85%;
     height: 75%;
@@ -64,7 +64,7 @@ main {
     align-items: center;
 }
 
-.name input {
+.name input, .new_task input {
     background-color: inherit;
     width: 95%;
     height: 60%;
@@ -79,11 +79,11 @@ main {
     font-size: 16px;
 }
 
-.name input:hover {
+.name input:hover, .new_task input:hover {
     background-color: #BBB;
 }
 
-.change {
+.change, .add_new_task {
     /*background-color: #222;*/
     width: 15%;
     height: 70%;
@@ -93,7 +93,7 @@ main {
     align-items: center;
 }
 
-.change button {
+.change button, .add_new_task button {
     background-color: inherit;
     width: 65%;
     height: 50%;
@@ -106,16 +106,26 @@ main {
     font-size: 15px;
 }
 
-.change button:hover {
+.add_new_task button {
+    color: #3F3;
+}
+
+.change button:hover, .add_new_task button:hover {
     color: #DDD;
     background-color: #FFD300;
+
+    cursor: pointer;
+}
+
+.add_new_task button:hover {
+    background-color: #3F3;
 }
 
 .tasks {
     /*background-color: #FFD300;*/
 
-    width: 85%;
-    height: 85%;
+    width: 80%;
+    height: 70%;
 
     justify-self: flex-start;
 
@@ -193,6 +203,27 @@ main {
     border-bottom-right-radius: inherit;
 
     color: #DDD;
+}
+
+.empty {
+    /*background-color: #111;*/
+
+    width: 85%;
+    height: 85%;
+
+    color: #EEE;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 140px;
+
+    cursor: default;
+}
+
+.empty p {
+    transform: rotate(-24deg);
 }
 
 .create {

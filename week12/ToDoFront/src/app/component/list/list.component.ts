@@ -11,16 +11,25 @@ import { ITaskList } from 'src/app/model/task-list';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  tasks: ITask[] = [];
+  tasks: ITask[] = [{
+    id: 0,
+    name: '',
+    created_at: null,
+    due_on: null,
+    status: '',
+    task_list: 0
+  }];
   taskList: ITaskList = {
     id: 0,
     name: ""
-  };
-
+  }
+  
   id: number;
   sub: any;
+  creating: boolean = true;
 
   public name: any = '';
+  public taskName: any = '';
 
 
   constructor( private taskListService: TaskListProviderService,
@@ -33,7 +42,9 @@ export class ListComponent implements OnInit {
 
   getTasks(): void {
     this.route.params.subscribe(params => {
-      this.id = +params['id']
+      this.id = +params['id'];
+
+      console.log(this.id);
     })
 
     this.taskListService.getTaskList(this.id).then(res => {
@@ -49,6 +60,16 @@ export class ListComponent implements OnInit {
 
   }
 
+  switchCreate(): void {
+    this.creating = !this.creating;
+
+    console.log("Creating mod switched!");
+  }
+
+  isEmpty(): boolean {
+    return !this.tasks || !this.tasks.length;
+  }
+
   switchTask(task: ITask): void {
     let ind = this.tasks.findIndex(t => t.id == task.id);
 
@@ -56,13 +77,13 @@ export class ListComponent implements OnInit {
       this.tasks[ind].status = 'Done';
 
       // TODO: notify
-      console.log(task.name + ' switched to Done')
+      console.log(task.name + ' task switched to Done!')
     }
     else {
       this.tasks[ind].status = 'Not Done';
 
       // TODO: notify
-      console.log(task.name + ' switched to Not Done')
+      console.log(task.name + ' task switched to Not Done!')
     }
 
     this.taskListService.updateTask(this.tasks[ind]);
@@ -72,7 +93,7 @@ export class ListComponent implements OnInit {
     this.taskListService.deleteTask(task).then(res => {
 
       // TODO: notify
-      console.log(task.name + ' deleted');
+      console.log(task.name + ' task deleted!');
 
       this.taskListService.getTasks(this.id).then(tasks => {
         this.tasks = tasks;
@@ -81,19 +102,42 @@ export class ListComponent implements OnInit {
   }
 
   updateTaskList(): void {
-    if (this.name == '') {
-      return
+    if (this.name != '') {
+
+      this.taskListService.updateTaskList({ id: this.id, name: this.name }).then(res => {
+        // TODO: notify
+        console.log('Task list name changed to ' + this.name + '!');
+
+        this.taskList = res;
+      });
     }
-
-    this.taskListService.updateTaskList({ id: this.id, name: this.name }).then(res => {
-      // TODO: notify
-      console.log('Task list name changed to ' + this.name);
-
-      this.taskList = res;
-    });
   }
 
   saveAndGoHome(): void {
     this.router.navigate(['/home'])
+  }
+
+  addTask(): void {
+    if (this.taskName != '') {
+
+      // console.log(this.taskName);
+      this.taskListService.createTask({
+        id: 0,
+        name: this.taskName,
+        created_at: new Date(),
+        due_on: new Date(),
+        status: 'Not Done',
+        task_list: this.id
+      }).then(res => {
+        console.log(this.taskName + ' task created in ' + this.taskList.name);
+
+        this.taskListService.getTasks(this.id).then(tasks => {
+          this.tasks = tasks;
+
+          console.log('updated!');
+        })
+      })
+
+    }
   }
 }

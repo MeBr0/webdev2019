@@ -39,7 +39,7 @@ export class TaskListService {
 
   // TODO: understand this
   formatDate(date: Date) {
-    return moments(date).format('YYYY-MM-DD');
+    return moments(date).format('YYYY-MM-DDThh:mm:ss');
 	}
 
   private normalBody(body: any): any {

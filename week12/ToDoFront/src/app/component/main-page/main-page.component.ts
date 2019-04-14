@@ -31,23 +31,26 @@ export class MainPageComponent implements OnInit {
     this.router.navigate(['/list', taskList.id]);
   }
 
-  createTaskList() {
-    console.log(this.name);
-    
+  createTaskList() {    
     if (this.name !== '') {
       this.taskListService.createTaskList(this.name).then(res => {
-        this.name = '';
         this.taskLists.push(res);
+
+        console.log(this.name + ' task list created!');
+
+        this.name = '';
       })
     }
   }
 
   deleteTaskList(taskList: ITaskList) {
     this.taskListService.deleteTaskList(taskList.id).then(res => {
-      console.log(taskList.id)
+      console.log(taskList.name + ' task list deleted!')
       
       this.taskListService.getTaskLists().then(taskLists => {
         this.taskLists = taskLists;
+        
+        console.log('updated!');
       });
     });
   }
