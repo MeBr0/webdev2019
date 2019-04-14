@@ -24,7 +24,6 @@ class TaskSerializer(serializers.ModelSerializer):
 
 	def create(self, validated_data):
 		t = validated_data.pop('task_list')
-		# validated_data.pop('id')
 
 		print('task list is ' + str(t))
 
