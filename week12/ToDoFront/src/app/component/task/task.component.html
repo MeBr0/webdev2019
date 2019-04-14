@@ -1,0 +1,121 @@
+<main>
+	<div class="task_content">
+		<div class="task_list_info">
+			<p>Task list: {{taskList.name}}</p> 
+		</div>
+
+<!-- 		<div class="task_info">
+			<div class="task_info_name">
+				<input type='input' value="" placeholder="Task name">
+			</div>
+			<div class="edit_task_name">
+				<button (click)="doNothing()">Change</button>
+			</div>
+		</div> -->
+
+		<div class="task_options" >
+			<div class="name task_option">
+				<div class="option_title">
+					<p>Name :</p>
+				</div>
+
+				<div class="option_values">
+					<div class="task_name">
+						<input [(ngModel)]="name" type="text" placeholder="Name" value="{{task.name}}">
+					</div>
+				</div>
+			</div>
+
+			<div class="created task_option">
+				<div class="option_title">
+					<p>Date of creation :</p>
+				</div>
+
+				<div class="option_values">
+					<div class="option year">
+						<input type="text" placeholder="YYYY" value="{{task.created_at.getFullYear()}}"disabled>
+					</div>
+					<div class="option month">
+						<input type="text" placeholder="MM" value="{{task.created_at.getMonth()}}" disabled>
+					</div>
+					<div class="option day">
+						<input type="text" placeholder="DD" value="{{task.created_at.getDay()}}" disabled>
+					</div>
+					<div class="option hour">
+						<input type="text" placeholder="hh" value="{{task.created_at.getHours()}}" disabled>
+					</div>
+					<div class="option minute">
+						<input type="text" placeholder="mm" value="{{task.created_at.getMinutes()}}" disabled>
+					</div>
+					<div class="hint">
+						<p>(YYYY MM DD hh mm)</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="due task_option">
+				<div class="option_title">
+					<p>Date of completion :</p>
+				</div>
+
+				<div class="option_values">
+					<div class="due option year">
+						<input [(ngModel)]="year" type="text" placeholder="YYYY" value="{{task.due_on.getFullYear()}}">
+					</div>
+					<div class="due option month">
+						<input [(ngModel)]="month" type="text" placeholder="MM" value="{{task.due_on.getMonth()}}">
+					</div>
+					<div class="due option day">
+						<input [(ngModel)]="day" type="text" placeholder="DD" value="{{task.due_on.getDay()}}">
+					</div>
+					<div class="due option hour">
+						<input [(ngModel)]="hour" type="text" placeholder="hh" value="{{task.due_on.getHours()}}">
+					</div>
+					<div class="due option minute">
+						<input [(ngModel)]="minute" type="text" placeholder="mm" value="{{task.due_on.getMinutes()}}">
+					</div>
+					<div class="hint">
+						<p>(YYYY MM DD hh mm)</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="status task_option">
+				<div class="option_title">
+					<p>Current status :</p>
+				</div>
+
+				<div class="option_values">
+					<div class="done" (click)='done()'>
+						<p>Done</p>
+					</div>
+					<div class="not_done" (click)='undone()'>
+						<p>Not Done</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="notes task_option">
+				<div class="option_title">
+					<p>Notes :</p>
+				</div>
+
+				<div class="option_values">
+					<div class="notes_text">
+						<input [(ngModel)]="notes" type="text" value="IDK?" placeholder="Some notes?">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="go">
+			<div class="save" (click)='save()'>
+				<p>SAVE</p>
+			</div>
+
+			<div class="delete" (click)='delete()'>
+				<p>DELETE</p>
+			</div>
+		</div>
+	</div>
+</main>

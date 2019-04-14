@@ -5,9 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './component/main-page/main-page.component';
 import { HeaderComponent } from './component/header/header.component';
-import { TaskListService } from './service/task-list/task-list.service';
-import { ListComponent } from './component/list/list.component'; 
-
+import { TaskListProviderService } from './service/task-list/task-list-provider.service';
+import { ListComponent } from './component/list/list.component';
+import { TaskComponent } from './component/task/task.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     MainPageComponent,
     HeaderComponent,
     ListComponent,
+    TaskComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +28,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   providers: [
-    TaskListService
+    TaskListProviderService
   ],
   bootstrap: [AppComponent]
 })

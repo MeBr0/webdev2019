@@ -48,9 +48,12 @@ export class TaskListProviderService extends TaskListService {
   }
 
   createTask(task: ITask): Promise<any> {
-    console.log(task);
+    // console.log(task);
 
     return this.post('http://127.0.0.1:8000/api/task_lists/' + task.task_list + '/tasks/', task)
   }
 
+  getTask(id: number, id2: number): Promise<ITask> {
+    return this.get('http://127.0.0.1:8000/api/task_lists/' + id + '/tasks/' + id2 + '/', {})
+  }
 }
