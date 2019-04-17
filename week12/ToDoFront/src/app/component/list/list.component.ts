@@ -114,7 +114,7 @@ export class ListComponent implements OnInit {
   }
 
   saveAndGoHome(): void {
-    this.router.navigate(['/home'])
+    this.router.navigate(['/home']);
   }
 
   addTask(): void {

@@ -11,14 +11,7 @@ import { ITaskList } from 'src/app/model/task-list';
   styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements OnInit {
-  task: ITask = {
-    id: 0,
-    name: '',
-    created_at: new Date(),
-    due_on: new Date(),
-    status: 'Done',
-    task_list: 0
-  };
+  task: ITask;
 
   taskList: ITaskList = {
     id: 0,
@@ -31,11 +24,11 @@ export class TaskComponent implements OnInit {
 
   public name: string = '';
 
-  public year: any = '';
-  public month: any = '';
-  public day: any = '';
-  public hour: any = '';
-  public minute: any = '';
+  public year: number = 0;
+  public month: number = 0;
+  public day: number = 0;
+  public hour: number = 0;
+  public minute: number = 0;
 
   constructor( private taskListService: TaskListProviderService,
     private route: ActivatedRoute,
@@ -59,16 +52,32 @@ export class TaskComponent implements OnInit {
       this.taskList = res;
 
       console.log(this.taskList);
+
+      this.taskListService.getTask(this.id, this.id2).then(res => {
+        this.task = res; 
+
+        this.task.created_at = new Date(this.task.created_at);
+        this.task.due_on = new Date(this.task.due_on);
+
+        console.log(this.task.created_at);
+        console.log(this.task.due_on);
+
+        // console.log(this.task.created_at.getFullYear());
+        // console.log(this.task.created_at.getMonth()+1);
+        // console.log(this.task.created_at.getUTCDate());
+        // console.log(this.task.created_at.getUTCHours());
+        // console.log(this.task.created_at.getMinutes());
+
+
+        this.year = this.task.due_on.getFullYear();
+        this.month = this.task.due_on.getMonth()+1;
+        this.day = this.task.due_on.getUTCDate();
+        this.hour = this.task.due_on.getUTCHours();
+        this.minute = this.task.due_on.getMinutes();
+      });
     });
 
-    this.taskListService.getTask(this.id, this.id2).then(res => {
-      this.task = res;
-
-      this.task.created_at = new Date(this.task.created_at);
-      this.task.due_on = new Date(this.task.due_on);
-
-      console.log(this.task);
-    });
+    
   }
 
   done(): void {
@@ -81,14 +90,28 @@ export class TaskComponent implements OnInit {
 
   save(): void {
     if (this.checkFields()) {
-      this.task.name = this.name;
+      console.log(new Date(this.year, this.month, this.day, this.hour, this.minute, 0, 0));  
 
-      console.log(this.year + '-' + this.month + '-' + this.day + 'T' + this.hour + ':' + this.minute + ':00');
 
-      this.task.due_on = new Date(this.year + '-' + this.month + '-' + this.day + 'T' + this.hour + ':' + this.minute + ':00');
+      this.taskListService.updateTask({
+        id: 0,
+        name: this.name,
+        created_at: this.task.created_at,
+        due_on: new Date(this.year, this.month, this.day, this.hour, this.minute, 0, 0),
+        status: this.task.status,
+        task_list: 0 
+      }).then(res => {
 
-      this.taskListService.updateTask(this.task).then(res => {
+
+        this.taskListService.getTask(this.id, this.id2).then(res => {
+          this.task = res;
+
+          this.task.created_at = new Date(this.task.created_at);
+          this.task.due_on = new Date(this.task.due_on);
+        });
+
         console.log('Saved!');
+
       });
     }
     else {
@@ -101,7 +124,11 @@ export class TaskComponent implements OnInit {
   }
 
   delete(): void {
+     this.taskListService.deleteTask(this.task).then(res => {
+       console.log(this.task.name + ' task deleted!');
 
+       this.router.navigate(['/list', this.id]);
+     });
   }
 
 }

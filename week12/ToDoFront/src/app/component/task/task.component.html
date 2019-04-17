@@ -13,7 +13,7 @@
 			</div>
 		</div> -->
 
-		<div class="task_options" >
+		<div *ngIf='task' class="task_options" >
 			<div class="name task_option">
 				<div class="option_title">
 					<p>Name :</p>
@@ -21,7 +21,7 @@
 
 				<div class="option_values">
 					<div class="task_name">
-						<input [(ngModel)]="name" type="text" placeholder="Name" value="{{task.name}}">
+						<input [(ngModel)]="this.task.name" type="text" placeholder="Name">
 					</div>
 				</div>
 			</div>
@@ -32,21 +32,13 @@
 				</div>
 
 				<div class="option_values">
-					<div class="option year">
-						<input type="text" placeholder="YYYY" value="{{task.created_at.getFullYear()}}"disabled>
+					<div class="due option year">
+						<input type="date" placeholder="date" [(ngModel)]="task.created_at">
 					</div>
-					<div class="option month">
-						<input type="text" placeholder="MM" value="{{task.created_at.getMonth()}}" disabled>
+					<div class="due option month">
+						<input type="time" placeholder="time" [(ngModel)]="task.created_at">
 					</div>
-					<div class="option day">
-						<input type="text" placeholder="DD" value="{{task.created_at.getDay()}}" disabled>
-					</div>
-					<div class="option hour">
-						<input type="text" placeholder="hh" value="{{task.created_at.getHours()}}" disabled>
-					</div>
-					<div class="option minute">
-						<input type="text" placeholder="mm" value="{{task.created_at.getMinutes()}}" disabled>
-					</div>
+
 					<div class="hint">
 						<p>(YYYY MM DD hh mm)</p>
 					</div>
@@ -60,19 +52,10 @@
 
 				<div class="option_values">
 					<div class="due option year">
-						<input [(ngModel)]="year" type="text" placeholder="YYYY" value="{{task.due_on.getFullYear()}}">
+						<input type="date" placeholder="date" [(ngModel)]="date">
 					</div>
 					<div class="due option month">
-						<input [(ngModel)]="month" type="text" placeholder="MM" value="{{task.due_on.getMonth()}}">
-					</div>
-					<div class="due option day">
-						<input [(ngModel)]="day" type="text" placeholder="DD" value="{{task.due_on.getDay()}}">
-					</div>
-					<div class="due option hour">
-						<input [(ngModel)]="hour" type="text" placeholder="hh" value="{{task.due_on.getHours()}}">
-					</div>
-					<div class="due option minute">
-						<input [(ngModel)]="minute" type="text" placeholder="mm" value="{{task.due_on.getMinutes()}}">
+						<input type="time" placeholder="time" [(ngModel)]="time">
 					</div>
 					<div class="hint">
 						<p>(YYYY MM DD hh mm)</p>
