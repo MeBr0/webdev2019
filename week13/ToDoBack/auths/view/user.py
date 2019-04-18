@@ -15,6 +15,5 @@ class UsersView(generics.ListAPIView):
     def get_queryset(self):
         return User.objects.all()
 
-
     def get_serializer_class(self):
-        return  UserSerializer
+        return UserSerializer

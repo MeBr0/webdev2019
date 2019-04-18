@@ -15,16 +15,14 @@ class TaskListsView(generics.ListCreateAPIView):
     def get_serializer_class(self):
         return TaskListSerializer
 
-    def perform_create(self, serializer):
-        serializer.save()
-
 
 class TaskListView(generics.RetrieveUpdateDestroyAPIView):
 
     permission_classes = (IsAuthenticated, )
 
+    # filters by pk of task_list
     def get_queryset(self):
-        return TaskList.objects.all()
+        return TaskList.objects.filter(id=self.kwargs['pk'])
 
     def get_serializer_class(self):
         return TaskListSerializer

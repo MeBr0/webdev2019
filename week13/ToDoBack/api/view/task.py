@@ -9,20 +9,19 @@ class TasksView(generics.ListCreateAPIView):
 
     permission_classes = (IsAuthenticated, )
 
+    # filters by pk of task_list
     def get_queryset(self):
         return Task.objects.filter(task_list=self.kwargs['pk'])
 
     def get_serializer_class(self):
         return TaskSerializer
 
-    def perform_create(self, serializer):
-        serializer.save()
-
 
 class TaskView(generics.RetrieveUpdateDestroyAPIView):
 
     permission_classes = (IsAuthenticated, )
 
+    # filter by pk2 of task_list, by pk of task
     def get_queryset(self):
         print(self.kwargs)
 
@@ -30,3 +29,4 @@ class TaskView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_serializer_class(self):
         return TaskSerializer
+

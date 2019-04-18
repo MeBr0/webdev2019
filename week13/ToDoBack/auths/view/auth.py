@@ -15,7 +15,7 @@ def login(request):
     user = serializer.validated_data['user']
 
     # creates token if exists, or return existing
-    token, is_created = Token.objects.get_or_create(user=user)
+    token, created = Token.objects.get_or_create(user=user)
 
     return Response({'token': token.key})
 
