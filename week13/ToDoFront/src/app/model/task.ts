@@ -3,6 +3,6 @@ export interface ITask {
     name: string;
     created_at: Date;
     due_on: Date;
-    status: string;
+    status: boolean;
     task_list: number;
 }
