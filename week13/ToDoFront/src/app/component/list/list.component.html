@@ -1,0 +1,49 @@
+<main>
+  <div class="back" (click)='saveAndGoHome()'>
+    &lt;
+  </div>
+
+  <div class="content">
+    <div class="options" [ngStyle]="{'height': this.creating == true ? '15%' : '18%'}">
+      <div class="name">
+        <input [(ngModel)]="name" type="text" value="{{taskList.name}}" placeholder="Task list">
+      </div>
+      <div class="change">
+        <button (click)='updateTaskList()'>CHANGE</button>    
+      </div>
+    </div>
+
+    <div *ngIf='creating' class="add">
+      <div class="new_task">
+        <input [(ngModel)]="taskName" type="text" placeholder="New task?">
+      </div>
+      <div class="add_new_task">
+        <button (click)='addTask()'>ADD</button>    
+      </div>
+    </div>
+    
+    <div *ngIf='!isEmpty()' class="tasks" [ngStyle]="{'height': this.creating == true ? '80%' : '85%'}">
+      <div class="task" *ngFor='let task of tasks'>
+        <div class="text" [ngStyle]="{'text-decoration': task.status == 'Done' ? 'line-through' : 'none'}" (click)="switchTask(task)">
+          <p>{{task.name}}</p>
+        </div>
+        
+        <div class="edit">
+          E
+        </div>
+
+        <div class="delete" (click)='deleteTask(task)'>
+          D
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf='isEmpty()' class="empty">
+      <p>EMPTY</p>
+    </div>
+  </div>
+
+  <div class="create" (click)="switchCreate()">
+    <p>CREATE</p>
+  </div>
+</main>

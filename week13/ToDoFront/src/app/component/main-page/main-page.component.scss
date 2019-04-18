@@ -1,0 +1,166 @@
+main {
+    background-color: #DDD;
+    width: 100%;
+    height: 92%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    /*background-color: #000;*/
+
+    width: 55%;
+    height: 90%;
+
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.new {
+    /*background-color: #111;*/
+
+    width: 60%;
+    height: 8%;
+
+    display: flex;
+}
+
+.new_text {
+    /*background-color: #221;*/
+
+    width: 75%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.new_text input {
+    background-color: inherit;
+
+    width: 100%;
+    height: 80%;
+    
+    border: 0;
+    border-radius: 6px;
+
+    padding-left: 10px;
+
+    color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+.new_text input:hover {
+    background-color: #BBB;
+}
+
+.go {
+    width: 25%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.go button {
+    background-color: inherit;
+
+    width: 60%;
+    height: 70%;
+
+    border: 0;
+    border-radius: 6px;
+
+    color: #3F3;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+}
+
+.go button:hover {
+    color: #DDD;
+    background-color: #3F3;
+
+}
+
+.old {
+    /*background-color: #111;*/
+
+    width: 100%;
+    height: 80%;
+}
+
+.task_list {
+    /*background-color: #333;*/
+
+    width: 100%;
+    height: 10%;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.task_list:hover {
+    cursor: pointer;
+
+    background-color: #BBB;
+}
+
+.task_list:first-child:hover {
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+}
+
+.task_list:last-child:hover {
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+}
+
+.text {
+    /*background-color: #444;*/
+    width: 95%;
+    height: 100%;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.delete {
+    width: 5%;
+    height: 100%;
+
+    color: #E80000;
+
+    font-size: 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete:hover {
+    background-color: #E80000;
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
+
+    color: #DDD;
+}
+
+.text p {
+    color: #111;
+
+    margin-left: 10px;
+}
