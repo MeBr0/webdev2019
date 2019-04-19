@@ -7,7 +7,7 @@ from api.serializers import TaskSerializer
 
 class TasksView(generics.ListCreateAPIView):
 
-    permission_classes = (IsAuthenticated, )
+    # permission_classes = (IsAuthenticated, )
 
     # filters by pk of task_list
     def get_queryset(self):
@@ -19,7 +19,7 @@ class TasksView(generics.ListCreateAPIView):
 
 class TaskView(generics.RetrieveUpdateDestroyAPIView):
 
-    permission_classes = (IsAuthenticated, )
+    # permission_classes = (IsAuthenticated, )
 
     # filter by pk2 of task_list, by pk of task
     def get_queryset(self):
