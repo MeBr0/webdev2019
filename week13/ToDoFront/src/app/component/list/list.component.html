@@ -24,11 +24,11 @@
     
     <div *ngIf='!isEmpty()' class="tasks" [ngStyle]="{'height': this.creating == true ? '80%' : '85%'}">
       <div class="task" *ngFor='let task of tasks'>
-        <div class="text" [ngStyle]="{'text-decoration': task.status == 'Done' ? 'line-through' : 'none'}" (click)="switchTask(task)">
+        <div class="text" [ngStyle]="{'text-decoration': task.status ? 'line-through' : 'none'}" (click)="switchTask(task)">
           <p>{{task.name}}</p>
         </div>
         
-        <div class="edit">
+        <div class="edit" (click)='editTask(task)'>
           E
         </div>
 

@@ -81,11 +81,11 @@ export class TaskComponent implements OnInit {
   }
 
   done(): void {
-    this.task.status = 'Done';
+    this.task.status = true;
   }
 
   undone(): void {
-    this.task.status = 'Not Done';
+    this.task.status = false;
   }
 
   save(): void {
@@ -117,6 +117,9 @@ export class TaskComponent implements OnInit {
     else {
       // TODO notify
     }
+
+    this.router.navigate(['/list', this.id]);
+
   }
 
   checkFields(): boolean {

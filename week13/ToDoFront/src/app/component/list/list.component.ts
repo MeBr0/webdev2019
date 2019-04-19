@@ -16,7 +16,7 @@ export class ListComponent implements OnInit {
     name: '',
     created_at: null,
     due_on: null,
-    status: '',
+    status: false,
     task_list: 0
   }];
   taskList: ITaskList = {
@@ -73,18 +73,7 @@ export class ListComponent implements OnInit {
   switchTask(task: ITask): void {
     let ind = this.tasks.findIndex(t => t.id == task.id);
 
-    if (this.tasks[ind].status == 'Not Done') {
-      this.tasks[ind].status = 'Done';
-
-      // TODO: notify
-      console.log(task.name + ' task switched to Done!')
-    }
-    else {
-      this.tasks[ind].status = 'Not Done';
-
-      // TODO: notify
-      console.log(task.name + ' task switched to Not Done!')
-    }
+    this.tasks[ind].status = !this.tasks[ind].status;
 
     this.taskListService.updateTask(this.tasks[ind]);
   }
@@ -114,7 +103,7 @@ export class ListComponent implements OnInit {
   }
 
   saveAndGoHome(): void {
-    this.router.navigate(['/home'])
+    this.router.navigate(['/home']);
   }
 
   addTask(): void {
@@ -126,10 +115,12 @@ export class ListComponent implements OnInit {
         name: this.taskName,
         created_at: new Date(),
         due_on: new Date(),
-        status: 'Not Done',
+        status: false,
         task_list: this.id
       }).then(res => {
         console.log(this.taskName + ' task created in ' + this.taskList.name);
+
+        this.taskName = '';
 
         this.taskListService.getTasks(this.id).then(tasks => {
           this.tasks = tasks;
@@ -139,5 +130,9 @@ export class ListComponent implements OnInit {
       })
 
     }
+  }
+
+  editTask(task: ITask): void {
+    this.router.navigate(['/list', this.taskList.id, 'edit', task.id]);
   }
 }
