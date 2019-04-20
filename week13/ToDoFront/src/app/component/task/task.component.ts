@@ -22,13 +22,11 @@ export class TaskComponent implements OnInit {
   id2: number;
   sub: any;
 
-  public name: string = '';
-
-  public year: number = 0;
-  public month: number = 0;
-  public day: number = 0;
-  public hour: number = 0;
-  public minute: number = 0;
+  public year: string;
+  public month: string;
+  public day: string;
+  public hour: string;
+  public minute: string;
 
   constructor( private taskListService: TaskListProviderService,
     private route: ActivatedRoute,
@@ -42,38 +40,24 @@ export class TaskComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = +params['id'];
       this.id2 = +params['id2'];
-
-      console.log(this.id);
-      console.log(this.id2);
-
     });
 
     this.taskListService.getTaskList(this.id).then(res => {
       this.taskList = res;
 
-      console.log(this.taskList);
-
       this.taskListService.getTask(this.id, this.id2).then(res => {
         this.task = res; 
+
+        console.log(this.task.created_at);
 
         this.task.created_at = new Date(this.task.created_at);
         this.task.due_on = new Date(this.task.due_on);
 
-        console.log(this.task.created_at);
-        console.log(this.task.due_on);
-
-        // console.log(this.task.created_at.getFullYear());
-        // console.log(this.task.created_at.getMonth()+1);
-        // console.log(this.task.created_at.getUTCDate());
-        // console.log(this.task.created_at.getUTCHours());
-        // console.log(this.task.created_at.getMinutes());
-
-
-        this.year = this.task.due_on.getFullYear();
-        this.month = this.task.due_on.getMonth()+1;
-        this.day = this.task.due_on.getUTCDate();
-        this.hour = this.task.due_on.getUTCHours();
-        this.minute = this.task.due_on.getMinutes();
+        this.year = this.task.due_on.getFullYear().toString();
+        this.month = (this.task.due_on.getMonth()+1).toString();
+        this.day = this.task.due_on.getDate().toString();
+        this.hour = this.task.due_on.getUTCHours().toString();
+        this.minute = this.task.due_on.getMinutes().toString();
       });
     });
 
@@ -82,44 +66,34 @@ export class TaskComponent implements OnInit {
 
   done(): void {
     this.task.status = true;
+
+    console.log(this.task.name + ' switched to done!')
   }
 
   undone(): void {
     this.task.status = false;
+
+    console.log(this.task.name + ' switched to undone!')
   }
 
   save(): void {
     if (this.checkFields()) {
-      console.log(new Date(this.year, this.month, this.day, this.hour, this.minute, 0, 0));  
-
 
       this.taskListService.updateTask({
-        id: 0,
-        name: this.name,
+        id: this.id2,
+        name: this.task.name,
         created_at: this.task.created_at,
-        due_on: new Date(this.year, this.month, this.day, this.hour, this.minute, 0, 0),
+        due_on: new Date(+this.year, +this.month-1, +this.day, +this.hour, +this.minute, 0, 0),
         status: this.task.status,
-        task_list: 0 
+        task_list: this.id 
       }).then(res => {
-
-
-        this.taskListService.getTask(this.id, this.id2).then(res => {
-          this.task = res;
-
-          this.task.created_at = new Date(this.task.created_at);
-          this.task.due_on = new Date(this.task.due_on);
-        });
-
-        console.log('Saved!');
-
+        this.router.navigate(['/list', this.id]);      
       });
+
     }
     else {
-      // TODO notify
+      alert('fields are not valid!')
     }
-
-    this.router.navigate(['/list', this.id]);
-
   }
 
   checkFields(): boolean {
@@ -134,4 +108,14 @@ export class TaskComponent implements OnInit {
      });
   }
 
+  activeDone(done: boolean): Object {
+    if (done) return {
+      'background-color': '#3F3',
+	    color: 'inherit'
+    }
+    else return {
+      'background-color': '#E80000',
+	    color: 'inherit'
+    }
+  } 
 }

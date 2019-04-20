@@ -21,7 +21,7 @@
 
 				<div class="option_values">
 					<div class="task_name">
-						<input [(ngModel)]="this.task.name" type="text" placeholder="Name">
+						<input [(ngModel)]="task.name" type="text" placeholder="Name">
 					</div>
 				</div>
 			</div>
@@ -32,11 +32,20 @@
 				</div>
 
 				<div class="option_values">
-					<div class="due option year">
-						<input type="date" placeholder="date" [(ngModel)]="task.created_at">
+					<div class="created option year">
+						<input type="text" placeholder="YYYY" [ngModel]='task.created_at.getFullYear()' disabled>
 					</div>
-					<div class="due option month">
-						<input type="time" placeholder="time" [(ngModel)]="task.created_at">
+					<div class="created option month">
+						<input type="text" placeholder="MM" [ngModel]='task.created_at.getMonth()+1' disabled>
+					</div>
+					<div class="created option day">
+						<input type="text" placeholder="DD" [ngModel]='task.created_at.getDate()' disabled>
+					</div>
+					<div class="created option hour">
+						<input type="text" placeholder="hh" [ngModel]='task.created_at.getUTCHours()' disabled>
+					</div>
+					<div class="created option minute">
+						<input type="text" placeholder="mm" [ngModel]='task.created_at.getMinutes()' disabled>
 					</div>
 
 					<div class="hint">
@@ -52,10 +61,19 @@
 
 				<div class="option_values">
 					<div class="due option year">
-						<input type="date" placeholder="date" [(ngModel)]="date">
+						<input type="text" placeholder="YYYY" [(ngModel)]='year'>
 					</div>
 					<div class="due option month">
-						<input type="time" placeholder="time" [(ngModel)]="time">
+						<input type="text" placeholder="MM" [(ngModel)]='month'>
+					</div>
+					<div class="due option day">
+						<input type="text" placeholder="DD" [(ngModel)]='day'>
+					</div>
+					<div class="due option hour">
+						<input type="text" placeholder="hh" [(ngModel)]='hour'>
+					</div>
+					<div class="due option minute">
+						<input type="text" placeholder="mm" [(ngModel)]='minute'>
 					</div>
 					<div class="hint">
 						<p>(YYYY MM DD hh mm)</p>
@@ -69,10 +87,14 @@
 				</div>
 
 				<div class="option_values">
-					<div class="done" (click)='done()'>
+					<div [style.background-color]="task.status ? '#3F3' : 'inherit'"
+						[style.color]="task.status ? 'inherit' : '#3F3' "
+					class="done" (click)='done()'>
 						<p>Done</p>
 					</div>
-					<div class="not_done" (click)='undone()'>
+					<div  [style.background-color]="!task.status ? '#E80000' : 'inherit'"
+					[style.color]="!task.status ? 'inherit' : '#E80000' "
+					 class="not_done" (click)='undone()'>
 						<p>Not Done</p>
 					</div>
 				</div>

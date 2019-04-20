@@ -132,7 +132,7 @@ main {
 }
 
 .option {
-	width: 30%;
+	width: 6%;
 	height: 60%;
 
 	margin-right: 3%;
@@ -144,8 +144,8 @@ main {
 	font-size: 16px;
 }
 
-.date {
-	
+.year {
+	width: 10%;
 }
 
 .done, .not_done {
@@ -159,26 +159,18 @@ main {
 	font-size: 20px;
 
 	border-radius: 9px;
+
+	cursor: pointer;
+
+	margin-right: 1%;
 }
 
 .done {
-	color: #3F3;
-	width: 17%;
-}
-
-.done:hover {
-	background-color: #3F3;
-	color: inherit;
+	width: 15%;
 }
 
 .not_done {
-	color: #E80000;
-	width: 22%;
-}
-
-.not_done:hover {
-	background-color: #E80000;
-	color: inherit;
+	width: 24%;
 }
 
 .notes_text {
@@ -219,10 +211,12 @@ main {
 	border-radius: 6px;
 
 	font-size: 18px;
+
+	cursor: pointer;
 }
 
 .go .save {
-	width: 9%;
+	width: 8%;
 
 	color: #3F3;
 }
