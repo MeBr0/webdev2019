@@ -23,7 +23,7 @@ def login(request):
 @api_view(['POST'])
 def logout(request):
     # deletes token
-    print(type(request.auth))
+    print(type(request))
 
     request.auth.delete()
 

@@ -3,18 +3,11 @@ from rest_framework import serializers
 from api.models import TaskList, Task
 
 
-class TaskListSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
-    name = serializers.CharField(required=True)
+class TaskListSerializer(serializers.ModelSerializer):
 
-    def create(self, validated_data):
-        return TaskList.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        instance.name = validated_data.get('name', instance.name)
-        instance.save()
-
-        return instance
+    class Meta:
+        model = TaskList
+        fields = '__all__'
 
 
 class TaskSerializer(serializers.ModelSerializer):

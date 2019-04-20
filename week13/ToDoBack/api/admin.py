@@ -5,7 +5,7 @@ from api.models import TaskList, Task
 
 @admin.register(TaskList)
 class TaskListAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
+    list_display = ('id', 'name', 'owner')
 
 
 @admin.register(Task)
