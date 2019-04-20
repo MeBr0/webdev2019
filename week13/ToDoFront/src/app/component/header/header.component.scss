@@ -4,14 +4,14 @@ header {
     height: 8%;
 
     display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
 }
 
 .logo {
-    width: 8%;
+    width: 20%;
     height: 70%;
-
-    margin-left: 8%;
 
     display: flex;
     justify-content: center;
@@ -25,4 +25,107 @@ a {
 
 a:hover {
     color: #DDD;
+}
+
+.sign_block {
+    width: 75%;
+    height: 70%;
+    // background-color: #888;
+    
+    justify-self: flex-end;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    margin-right: 5%;
+}
+
+.sign {
+    // background-color: #DDD;
+    width: 50%;
+    height: 100%;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.login, .password {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login input, .password input {
+    width: 90%;
+    height: 60%;
+
+    background-color: inherit;
+    border: none;
+    border-bottom: 1px #DDD solid;
+    color: #DDD;
+}
+
+.login {
+    width: 42%;
+    height: 100%;
+}
+
+.password {
+    width: 42%;
+    height: 100%;
+}
+
+.submit_login {
+    // background-color: #111;
+    width: 16%;
+    height: 80%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.inner_submit {
+    width: 80%;
+    height: 80%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 7px;
+    font-size: 12px;
+    color: #DDD;
+    cursor: pointer;
+}
+
+.inner_submit:hover {
+    background-color: #DDD;
+    color: #222;
+}
+
+.inner_submit p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.out {
+    // background-color: #000;
+    width: 50%;
+    height: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.submit_logout {
+    width: 16%;
+    height: 80%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

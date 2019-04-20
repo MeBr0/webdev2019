@@ -2,4 +2,27 @@
   <div class="logo">
     <a [routerLink]="['home']">ToDoList</a>
   </div>
+  <div class="sign_block">
+    <div *ngIf='!checkLocalStorage()' class="sign">
+      <div class="login">
+        <input type="text" placeholder="login" [(ngModel)]='login'>
+      </div>
+      <div class="password">
+        <input type="text" placeholder="password" [(ngModel)]='password'>
+      </div>
+      <div class="submit_login">
+        <div class="inner_submit" (click)='logIn()'>
+            <p>LOGIN</p>
+        </div>
+      </div>
+    </div>
+    
+    <div *ngIf='checkLocalStorage()' class="out">
+      <div class="submit_logout">
+        <div class="inner_submit" (click)='logOut()'>
+          <p>LOGOUT</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </header>

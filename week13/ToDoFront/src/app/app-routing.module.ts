@@ -6,13 +6,13 @@ import { TaskComponent } from './component/task/task.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: MainPageComponent },
+  { path: 'home', component: MainPageComponent, runGuardsAndResolvers: 'always'},
   { path: 'list/:id', component: ListComponent },
   { path: 'list/:id/edit/:id2', component: TaskComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
