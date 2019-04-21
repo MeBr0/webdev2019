@@ -31,6 +31,8 @@ export class HeaderComponent implements OnInit {
 
         this.authService.toggle();
 
+        this.router.navigate(['/home']);
+
       });
     }
   }
@@ -42,6 +44,8 @@ export class HeaderComponent implements OnInit {
       localStorage.clear();
       
       this.authService.toggle();
+
+      this.router.navigate(['/home']);
     });
   }
 

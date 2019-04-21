@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ITaskList } from 'src/app/model/task-list';
 import { TaskListProviderService } from 'src/app/service/task-list/task-list-provider.service';
 import { Router } from '@angular/router';
-import { ITask } from 'src/app/model/task';
 import { AuthService } from 'src/app/service/auth/auth-service';
 
 @Component({
@@ -15,6 +14,8 @@ export class MainPageComponent implements OnInit {
 
   public name: any = '';
   toggle = true;
+
+  message: string = '';
 
   constructor(private taskListService: TaskListProviderService,
             private router: Router,
@@ -50,6 +51,11 @@ export class MainPageComponent implements OnInit {
 
         console.log(this.name + ' task list created!');
 
+        this.message = this.name + ' task list created!';
+        setTimeout(() => {
+          this.message = '';
+        }, 2000);
+
         this.name = '';
       })
     }
@@ -57,12 +63,14 @@ export class MainPageComponent implements OnInit {
 
   deleteTaskList(taskList: ITaskList) {
     this.taskListService.deleteTaskList(taskList.id).then(res => {
-      console.log(taskList.name + ' task list deleted!')
+
+      this.message = taskList.name + ' task list deleted!';
+      setTimeout(() => {
+        this.message = '';
+      }, 2000);  
       
       this.taskListService.getTaskLists().then(taskLists => {
         this.taskLists = taskLists;
-        
-        console.log('updated!');
       });
     });
   }

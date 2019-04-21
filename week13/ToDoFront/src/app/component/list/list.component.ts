@@ -28,6 +28,8 @@ export class ListComponent implements OnInit {
   sub: any;
   creating: boolean = true;
 
+  message: string;
+
   public name: any = '';
   public taskName: any = '';
 
@@ -43,8 +45,6 @@ export class ListComponent implements OnInit {
   getTasks(): void {
     this.route.params.subscribe(params => {
       this.id = +params['id'];
-
-      console.log(this.id);
     })
 
     this.taskListService.getTaskList(this.id).then(res => {
@@ -62,8 +62,6 @@ export class ListComponent implements OnInit {
 
   switchCreate(): void {
     this.creating = !this.creating;
-
-    console.log("Creating mod switched!");
   }
 
   isEmpty(): boolean {
@@ -81,8 +79,10 @@ export class ListComponent implements OnInit {
   deleteTask(task: ITask): void {
     this.taskListService.deleteTask(task).then(res => {
 
-      // TODO: notify
-      console.log(task.name + ' task deleted!');
+      this.message = task.name + ' task deleted!';
+      setTimeout(() => {
+        this.message = '';
+      }, 2000);  
 
       this.taskListService.getTasks(this.id).then(tasks => {
         this.tasks = tasks;
@@ -94,8 +94,11 @@ export class ListComponent implements OnInit {
     if (this.name != '') {
 
       this.taskListService.updateTaskList({ id: this.id, name: this.name }).then(res => {
-        // TODO: notify
-        console.log('Task list name changed to ' + this.name + '!');
+
+        this.message = 'Task list name changed to "' + this.name + '"!';
+        setTimeout(() => {
+          this.message = '';
+        }, 2000);  
 
         this.taskList = res;
       });
@@ -118,14 +121,16 @@ export class ListComponent implements OnInit {
         status: false,
         task_list: this.id
       }).then(res => {
-        console.log(this.taskName + ' task created in ' + this.taskList.name);
+
+        this.message = this.taskName + ' task created in ' + this.taskList.name;
+        setTimeout(() => {
+          this.message = '';
+        }, 2000);  
 
         this.taskName = '';
 
         this.taskListService.getTasks(this.id).then(tasks => {
           this.tasks = tasks;
-
-          console.log('updated!');
         })
       })
 

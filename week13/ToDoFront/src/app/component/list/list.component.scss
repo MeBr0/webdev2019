@@ -41,10 +41,18 @@ main {
     align-items: center;
 }
 
+.notify {
+    height: 8%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .options, .add {
     /*background-color: #000;*/
     width: 85%;
-    height: 15%;
+    height: 12%;
     
     display: flex;
     flex-direction: row;
@@ -93,7 +101,7 @@ main {
 
 .change button, .add_new_task button {
     background-color: inherit;
-    width: 65%;
+    width: 70%;
     height: 50%;
 
     border: 0;
@@ -105,6 +113,8 @@ main {
 }
 
 .add_new_task button {
+    width: 46%;
+    height: 60%;
     color: #3F3;
 }
 
@@ -170,7 +180,7 @@ main {
     margin-left: 3%;
 }
 
-.edit, .delete {
+.check, .delete {
     width: 6%;
     height: 100%;
 
@@ -181,14 +191,11 @@ main {
     align-items: center
 }
 
-.edit {
-    color: #FFD300;
-}
+.check-box {
+    width: 60%;
+    height: 60%;
 
-.edit:hover {
-    background-color: #FFD300;
-
-    color: #DDD;
+    border-radius: 50%;
 }
 
 .delete {

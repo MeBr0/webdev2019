@@ -89,6 +89,7 @@ a:hover {
 }
 
 .inner_submit {
+    // background-color: #DDD;
     width: 80%;
     height: 80%;
 
@@ -119,9 +120,14 @@ a:hover {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+
+    color: #DDD;
+    font-size: 14px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .submit_logout {
+    // background-color: #DDD;
     width: 16%;
     height: 80%;
 

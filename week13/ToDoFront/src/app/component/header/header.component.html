@@ -18,6 +18,7 @@
     </div>
     
     <div *ngIf='checkLocalStorage()' class="out">
+      <p *ngIf='login'>Hello, {{login}}</p>
       <div class="submit_logout">
         <div class="inner_submit" (click)='logOut()'>
           <p>LOGOUT</p>
