@@ -23,7 +23,7 @@ class TaskView(generics.RetrieveUpdateDestroyAPIView):
 
     # filter by pk2 of task_list, by pk of task
     def get_queryset(self):
-        print(self.kwargs)
+        print(self.args)
 
         return Task.objects.filter(id=self.kwargs['pk'], task_list=self.kwargs['pk2'])
 

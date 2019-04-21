@@ -26,6 +26,7 @@ class Task(models.Model):
     due_on = models.DateTimeField()
     status = models.BooleanField()
     task_list = models.ForeignKey(TaskList, on_delete=models.CASCADE)
+    notes = models.CharField(max_length=200, default='', blank=True)
 
     objects = TaskListManager()
 
