@@ -5,4 +5,5 @@ export interface ITask {
     due_on: Date;
     status: boolean;
     task_list: number;
+    notes: string;
 }

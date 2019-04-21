@@ -51,6 +51,7 @@ export class TaskComponent implements OnInit {
         console.log(this.task.created_at);
 
         this.task.created_at = new Date(this.task.created_at);
+        this.task.created_at.setHours(this.task.created_at.getUTCHours());
         this.task.due_on = new Date(this.task.due_on);
 
         this.year = this.task.due_on.getFullYear().toString();
@@ -78,15 +79,18 @@ export class TaskComponent implements OnInit {
 
   save(): void {
     if (this.checkFields()) {
-
       this.taskListService.updateTask({
         id: this.id2,
         name: this.task.name,
         created_at: this.task.created_at,
-        due_on: new Date(+this.year, +this.month-1, +this.day, +this.hour, +this.minute, 0, 0),
+        due_on: new Date(+this.year, +(this.month)-1, +this.day, +this.hour, +this.minute, 0, 0),
         status: this.task.status,
-        task_list: this.id 
+        task_list: this.id,
+        notes: this.task.notes
       }).then(res => {
+
+        console.log(res);
+
         this.router.navigate(['/list', this.id]);      
       });
 

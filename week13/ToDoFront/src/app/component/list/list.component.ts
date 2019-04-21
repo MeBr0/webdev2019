@@ -17,7 +17,8 @@ export class ListComponent implements OnInit {
     created_at: null,
     due_on: null,
     status: false,
-    task_list: 0
+    task_list: 0,
+    notes: ''
   }];
   taskList: ITaskList = {
     id: 0,
@@ -119,7 +120,8 @@ export class ListComponent implements OnInit {
         created_at: new Date(),
         due_on: new Date(),
         status: false,
-        task_list: this.id
+        task_list: this.id,
+        notes: ''
       }).then(res => {
 
         this.message = this.taskName + ' task created in ' + this.taskList.name;
