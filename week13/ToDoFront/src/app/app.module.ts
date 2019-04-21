@@ -12,6 +12,7 @@ import { TaskComponent } from './component/task/task.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AuthInterceptor } from './interceptor/auth';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { AuthInterceptor } from './interceptor/auth';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     TaskListProviderService,

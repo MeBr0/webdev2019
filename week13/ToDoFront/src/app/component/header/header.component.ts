@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskListProviderService } from 'src/app/service/task-list/task-list-provider.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ResourceLoader } from '@angular/compiler';
+import { AuthService } from 'src/app/service/auth/auth-service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +15,8 @@ export class HeaderComponent implements OnInit {
   password: string;
 
   constructor(private taskListService: TaskListProviderService,
-                private router: Router) { }
+                private router: Router,
+                private authService: AuthService) { }
 
   ngOnInit() {
 
@@ -26,7 +29,8 @@ export class HeaderComponent implements OnInit {
 
         localStorage.setItem('token', res.token);
 
-        Location.reload();
+        this.authService.toggle();
+
       });
     }
   }
@@ -36,9 +40,8 @@ export class HeaderComponent implements OnInit {
       console.log(localStorage);
       
       localStorage.clear();
-
-      this.router.navigate(['']); 
-
+      
+      this.authService.toggle();
     });
   }
 

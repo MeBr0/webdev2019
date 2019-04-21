@@ -3,6 +3,7 @@ import { ITaskList } from 'src/app/model/task-list';
 import { TaskListProviderService } from 'src/app/service/task-list/task-list-provider.service';
 import { Router } from '@angular/router';
 import { ITask } from 'src/app/model/task';
+import { AuthService } from 'src/app/service/auth/auth-service';
 
 @Component({
   selector: 'app-main-page',
@@ -13,17 +14,28 @@ export class MainPageComponent implements OnInit {
   taskLists: ITaskList[] = [];
 
   public name: any = '';
+  toggle = true;
 
   constructor(private taskListService: TaskListProviderService,
-            private router: Router) { }
+            private router: Router,
+            private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.change.subscribe(isOpen => {
+      this.toggle = isOpen;
+
+      this.getTaskLists();
+    });
+
     this.getTaskLists();
   }
 
   getTaskLists(): void {
     this.taskListService.getTaskLists().then(res => {
       this.taskLists = res;
+    },
+    err => {
+      this.taskLists = [];
     })
   }
 
