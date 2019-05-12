@@ -1,13 +1,30 @@
-from rest_framework import generics
+from django_filters.rest_framework import DjangoFilterBackend
+
+from rest_framework import generics, filters
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.pagination import PageNumberPagination
 
 from api.models import Task
 from api.serializers import TaskSerializer
+from api.filters import TasksFilter
 
 
 class TasksView(generics.ListCreateAPIView):
 
     permission_classes = (IsAuthenticated, )
+
+    filter_backends = (filters.OrderingFilter, DjangoFilterBackend, )
+
+    # pagination with PageNumberPagination
+    pagination_class = PageNumberPagination
+    pagination_class.page_size = 10
+
+    # ordering filter
+    ordering_fields = ('status', 'created_at', 'due_on', )
+    # default filtering
+    ordering = ('name', )
+
+    filter_class = TasksFilter
 
     # filters by pk of task_list
     def get_queryset(self):
